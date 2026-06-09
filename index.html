@@ -487,43 +487,10 @@
 
     <script>
         /* =============================================================================
-        ⚠️ نظام إدارة وحفظ بيانات المانهوا - مصفوفة برمجية سهلة التعديل والتحكم ⚠️
+        ⚠️ تم تفريغ المصفوفة كما طلبت ⚠️
         =============================================================================
         */
-        const manhwaData = [
-            {
-                title: "المستحضر الوحيد",
-                rating: "9.7",
-                image: "https://preview.redd.it/lone-necromancer-why-does-nobody-talks-about-this-v0-7u6fnc479f0g1.jpeg?auto=webp&s=8f64739c09377aae6c6817e7817b77ae3b33d793",
-                genres: ["اكشن", "استحضار", "نظام"],
-                author: "مستمره",
-                desc: "فاخر"
-            },
-            {
-                title: "سولو ليفيلينغ (Solo Leveling)",
-                rating: "9.9",
-                image: "https://i.ibb.co/6Rxrd1Bw/IMG-4977.jpg", 
-                genres: ["أكشن", "خيال", "بوابات", "نظام"],
-                author: "مستمرة",
-                desc: "واجهة مانهوا النخبة الأعظم. القصة تحكي عن تطور البطل صياد الفئة E الضعيف جداً ليصبح ملك الظلال الأقوى، رسم أسطوري بكل تفاصيله ومقاييسه الفنية الاستثنائية."
-            },
-            {
-                title: "عودة الملك المجنون",
-                rating: "9.5",
-                image: "https://images.unsplash.com/photo-1578632767115-351597cf2477?q=80&w=600",
-                genres: ["فنون قتالية", "أكشن", "تاريخي"],
-                author: "مستمرة",
-                desc: "تحليل معمق لبنية السرد في مانهوا فنون الدفاع عن النفس الكلاسيكية، حبكة ممتازة تتحدى مكر العائلات النبيلة وتطور مستمر وذكي للقدرات والمهارات."
-            },
-            {
-                title: "الحياة الثانية للهاكر الإمبراطوري",
-                rating: "9.2",
-                image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=600",
-                genres: ["خيال علمي", "نظام", "ذكاء"],
-                author: "مكتملة",
-                desc: "واحدة من أفضل مانهوا التكنولوجيا والعودة بالزمن. تطور القصة مذهل، والشخصيات الجانبية تم بناء ذكائها بعناية فائقة لتفادي سذاجة الحوارات السائدة بالأعمال الأخرى."
-            }
-        ];
+        const manhwaData = [];
 
         // --- نظام إظهار التنبيهات المخصصة ---
         function showToast(message, isSuccess = true) {
@@ -554,6 +521,19 @@
             const grid = document.getElementById('manhwaGrid');
             grid.innerHTML = '';
             
+            // إضافة رسالة في حال كانت المصفوفة فارغة
+            if (manhwaData.length === 0) {
+                grid.innerHTML = `
+                    <div class="no-results" style="grid-column: 1 / -1; text-align: center; padding: 5rem 1rem;">
+                        <svg width="64" height="64" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" style="color: var(--primary); margin-bottom: 1.5rem; opacity: 0.8;">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                        </svg>
+                        <p style="color: rgba(255, 255, 255, 0.5); font-size: 1.25rem; font-weight: 700;">لا توجد أعمال مضافة حالياً في المعرض!</p>
+                    </div>
+                `;
+                return;
+            }
+
             manhwaData.forEach((manhwa) => {
                 const card = document.createElement('div');
                 card.className = 'manhwa-card';
