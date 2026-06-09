@@ -60,7 +60,7 @@
 
         .noise { position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: 0.02; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
         
-        /* زر كتم وتشغيل الصوت */
+        /* زر التحكم بالصوت */
         .sound-control-btn {
             position: fixed;
             bottom: 2rem;
@@ -84,6 +84,36 @@
             background: var(--primary);
             color: #000;
         }
+
+        /* نظام التنبيهات المخصص */
+        .toast-container {
+            position: fixed;
+            top: 2rem;
+            left: 2rem;
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            pointer-events: none;
+        }
+        .toast {
+            background: rgba(18, 5, 5, 0.95);
+            border: 2px solid var(--primary);
+            box-shadow: 0 0 20px var(--primary-glow);
+            color: #fff;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transform: translateX(-150%);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            pointer-events: auto;
+            backdrop-filter: blur(10px);
+        }
+        .toast.show { transform: translateX(0); }
+        .toast-icon { color: var(--primary); display: flex; align-items: center; }
 
         /* شريط التنقل العلوي */
         nav { 
@@ -128,26 +158,6 @@
         .nav-links a::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0%; height: 2px; background: var(--gradient-aurora); transition: width 0.3s ease; }
         .nav-links a:hover { color: var(--primary); text-shadow: 0 0 10px var(--primary-glow); }
         .nav-links a:hover::after { width: 100%; }
-        
-        .nav-cta { 
-            padding: 0.8rem 2rem; 
-            border-radius: 8px; 
-            background: rgba(255, 34, 34, 0.25); 
-            border: 2px solid var(--primary); 
-            color: #ffffff; 
-            font-size: 0.9rem; 
-            font-weight: 800; 
-            text-decoration: none; 
-            transition: all 0.3s; 
-            backdrop-filter: blur(10px); 
-            position: relative; 
-            overflow: hidden; 
-            box-shadow: 0 0 20px rgba(255, 34, 34, 0.5); 
-            z-index: 9995;
-        }
-        .nav-cta::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); transition: left 0.5s; }
-        .nav-cta:hover::before { left: 100%; }
-        .nav-cta:hover { background: var(--primary); color: #000000; box-shadow: 0 0 25px var(--primary-glow); border-color: transparent; }
 
         section { position: relative; z-index: 50; } 
 
@@ -278,7 +288,7 @@
         .card-desc { font-size: 0.95rem; color: #cccccc; line-height: 1.6; height: 75px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; text-shadow: 0 1px 2px rgba(0,0,0,0.8); }
 
         /* قسم التحليل والرادار */
-        .showcase-wrap { padding: 8rem 1rem; background: radial-gradient(circle at center, rgba(35, 5, 5, 0.45) 0%, transparent 60%); border-top: 1px solid var(--border-light); position: relative; z-index: 120; }
+        .showcase-wrap { padding: 8rem 1rem 12rem; background: radial-gradient(circle at center, rgba(35, 5, 5, 0.45) 0%, transparent 60%); border-top: 1px solid var(--border-light); position: relative; z-index: 120; }
         .showcase-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
         
         .visuals-container { display: flex; flex-direction: column; gap: 2rem; width: 100%; max-width: 500px; margin: 0 auto; opacity: 1 !important; transform: none !important; }
@@ -292,44 +302,6 @@
         .check-list { display: flex; flex-direction: column; gap: 1.2rem; }
         .check-item { display: flex; align-items: center; gap: 1.2rem; font-size: 1.1rem; font-weight: 800; color: #ffffff; text-shadow: 0 2px 5px rgba(0,0,0,0.9); }
         .check-mark { width: 28px; height: 28px; border-radius: 8px; background: rgba(255, 34, 34, 0.3); border: 2px solid var(--primary); display: flex; align-items: center; justify-content: center; color: var(--primary); font-size: 0.95rem; box-shadow: 0 0 15px var(--primary-glow); flex-shrink: 0; }
-
-        /* أداة إضافة المانهوا الفورية للمطور */
-        .loader-wrap { padding: 6rem 1rem 10rem; position: relative; z-index: 120;}
-        .generator-container { max-width: 850px; margin: 0 auto; background: linear-gradient(180deg, rgba(28, 6, 6, 0.9) 0%, rgba(10, 2, 2, 0.95) 100%); border: 2px solid var(--primary); border-radius: 16px; overflow: hidden; backdrop-filter: blur(20px); box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 30px rgba(255, 34, 34, 0.3); }
-        
-        .gen-header { padding: 1.5rem; background: rgba(0,0,0,0.8); border-bottom: 1px solid var(--border-light); display: flex; justify-content: space-between; align-items: center; }
-        .gen-title { display: flex; align-items: center; gap: 0.7rem; font-size: 1.2rem; font-weight: 800; color: #fff; }
-        .gen-title svg { color: var(--primary); }
-
-        .gen-form { padding: 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-        @media (max-width: 768px) { .gen-form { grid-template-columns: 1fr; } }
-        
-        .input-group { display: flex; flex-direction: column; gap: 0.5rem; }
-        .input-group.full-width { grid-column: span 2; }
-        @media (max-width: 768px) { .input-group.full-width { grid-column: span 1; } }
-
-        .input-group label { font-size: 0.95rem; font-weight: 800; color: #ff5555; }
-        .input-group input, .input-group textarea { background: rgba(20, 5, 5, 0.8); border: 2px solid rgba(255, 34, 34, 0.3); padding: 0.8rem 1rem; border-radius: 8px; color: #fff; font-family: 'Cairo', sans-serif; font-size: 0.95rem; transition: border-color 0.3s; }
-        .input-group input:focus, .input-group textarea:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 10px var(--primary-glow); }
-        
-        .gen-btn { grid-column: span 2; padding: 1rem; border-radius: 8px; border: none; background: var(--gradient-aurora); color: #fff; font-size: 1.1rem; font-weight: 800; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; text-shadow: 0 1px 3px rgba(0,0,0,0.5); }
-        @media (max-width: 768px) { .gen-btn { grid-column: span 1; } }
-        .gen-btn:hover { transform: scale(1.02); box-shadow: 0 0 25px var(--primary-glow); }
-
-        .code-block-wrapper { max-width: 850px; margin: 2rem auto 0; background: #0c0202; border: 1px dashed var(--primary); border-radius: 12px; overflow: hidden; }
-        .code-header { display: flex; justify-content: space-between; align-items: center; padding: 1rem 1.5rem; background: rgba(0,0,0,0.8); border-bottom: 1px solid var(--border-light); }
-        .code-title { display: flex; align-items: center; gap: 0.7rem; font-size: 1rem; font-weight: 700; color: #fff; }
-        
-        .copy-btn { background: rgba(255,255,255,0.05); border: 1px solid var(--border-light); color: var(--text-muted); cursor: pointer; transition: all 0.3s; padding: 0.6rem; border-radius: 8px; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(5px); }
-        .copy-btn:hover { color: var(--primary); background: rgba(255, 34, 34, 0.15); border-color: var(--primary); transform: scale(1.05); }
-        .copy-btn.copied { color: #4ade80; background: rgba(74, 222, 128, 0.15); border-color: #4ade80; }
-        
-        .code-content { padding: 1.5rem; overflow-x: auto; direction: ltr; text-align: left; }
-        .code-content pre { margin: 0; font-family: 'Space Grotesk', monospace; font-size: 0.9rem; line-height: 1.6; color: var(--text-main); white-space: pre-wrap; word-wrap: break-word;}
-
-        .hl-comment { color: #6b7280; font-style: italic; }
-        .hl-key { color: #f87171; }
-        .hl-val { color: #4ade80; }
 
         /* تذييل الصفحة */
         footer { padding: 4rem 1rem; border-top: 1px solid var(--border-light); display: flex; justify-content: space-between; align-items: center; background: #060101; z-index: 150; position: relative; }
@@ -363,6 +335,9 @@
 </head>
 
 <body>
+    <!-- نظام الإشعارات المخصص -->
+    <div class="toast-container" id="toastContainer"></div>
+
     <!-- مؤشر الفأرة التفاعلي المخصص -->
     <div id="cursor" style="left: 0px; top: 0px;"></div>
     <div id="cursor-ring" style="left: 0px; top: 0px;"></div>
@@ -371,7 +346,6 @@
     <!-- خلفية الفيديو المدمجة -->
     <div class="video-background">
         <video autoplay loop muted playsinline id="bgVideo">
-            <!-- يمكنك وضع أي رابط فيديو للمانهوا هنا -->
             <source src="https://www.image2url.com/r2/default/videos/1780687433252-c4b32f32-aee3-4e5d-b625-ac2870adcd86.mp4" type="video/mp4">
         </video>
         <div class="video-overlay"></div>
@@ -396,7 +370,6 @@
             <li><a href="#catalog">المعرض والتشريح</a></li>
             <li><a href="#analysis">رادار التشريح</a></li>
         </ul> 
-        <a href="#creator" class="nav-cta">أداة المطور</a>
     </nav>
 
     <section class="hero">
@@ -443,7 +416,6 @@
             <h2 class="section-title">أقوى أعمال المانهوا على <em>SLAX</em></h2>
         </div>
         
-        <!-- هنا سيتم توليد المانهوا تلقائياً من الجافا سكربت بالأسفل -->
         <div class="manhwa-grid" id="manhwaGrid"></div>
     </section>
 
@@ -451,7 +423,6 @@
     <section id="analysis" class="showcase-wrap">
         <div class="showcase-inner">
             <div class="visuals-container">
-                <!-- الرادار التفاعلي المطور باللون الأحمر لمراقبة المانهوا -->
                 <div class="showcase-visual">
                     <div class="grid-bg"></div>
                     <canvas id="radarCanvas" width="500" height="500" style="position:relative; z-index:5; width: 100%; height: auto;"></canvas>
@@ -474,73 +445,6 @@
         </div>
     </section>
 
-    <!-- أداة المطور لإنشاء وتوليد كود مانهوا جديد بسهولة -->
-    <section id="creator" class="loader-wrap">
-        <div class="section-head"> 
-            <span class="section-tag">بوابة المطور السريعة</span>
-            <h2 class="section-title">مولّد أكواد مانهوا <em>سهل الاستخدام</em></h2>
-            <p class="hero-desc" style="margin-top: 1.5rem; margin-bottom: 0; text-align: center;">املأ الحقول بالأسفل وسيتكفل النظام بإنشاء كود المانهوا الصحيح لك فوراً. انسخه وضعه بالمصفوفة في الكود البرمجي!</p>
-        </div>
-        
-        <div class="generator-container">
-            <div class="gen-header">
-                <div class="gen-title">
-                    <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                    </svg>
-                    لوحة إضافة مانهوا جديدة ديناميكياً
-                </div>
-            </div>
-            <div class="gen-form">
-                <div class="input-group">
-                    <label>اسم المانهوا بالعربية</label>
-                    <input type="text" id="mName" placeholder="مثال: سولو ليفيلينغ" required>
-                </div>
-                <div class="input-group">
-                    <label>التقييم (مثلاً 9.8)</label>
-                    <input type="text" id="mRating" placeholder="مثال: 9.8" required>
-                </div>
-                <div class="input-group full-width">
-                    <label>رابط صورة المانهوا (URL)</label>
-                    <input type="url" id="mImage" placeholder="أدخل رابط الصورة المباشر هنا..." required>
-                </div>
-                <div class="input-group">
-                    <label>التصنيفات (افصل بينها بفاصلة)</label>
-                    <input type="text" id="mGenres" placeholder="مثال: أكشن, سحر, نظام, خيال">
-                </div>
-                <div class="input-group">
-                    <label>اسم الكاتب أو الحالة</label>
-                    <input type="text" id="mAuthor" placeholder="مثال: مستمرة / منتهية">
-                </div>
-                <div class="input-group full-width">
-                    <label>وصف المانهوا (قصتها أو تشريح بسيط عنها)</label>
-                    <textarea id="mDesc" rows="3" placeholder="اكتب نبذة شيقة وجذابة عن المانهوا المشرحة هنا..." required></textarea>
-                </div>
-                <button type="button" class="gen-btn" onclick="generateManhwaCode()">توليد الكود الفاخر الآن ✨</button>
-            </div>
-        </div>
-
-        <!-- صندوق الكود المولد -->
-        <div class="code-block-wrapper" id="generatedCodeArea" style="display: none;">
-            <div class="code-header">
-                <div class="code-title">
-                    <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                    </svg>
-                    الكود الجاهز - انسخه والصقه بملف الموقع
-                </div>
-                <button class="copy-btn" id="copyBtn" title="نسخ الكود المولد">
-                    <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
-                    </svg>
-                </button>
-            </div>
-            <div class="code-content"> 
-                <pre><code id="generatedCodeText"></code></pre>
-            </div>
-        </div>
-    </section>
-
     <footer>
         <div class="foot-logo">SLAX MANHWA</div>
         <div style="font-size: 0.9rem; color: var(--text-muted); font-weight: 500;">© 2026 تم التطوير للتحليل، التميز المطلق وهيبة الأعمال الفنية</div>
@@ -548,24 +452,22 @@
 
     <script>
         /* =============================================================================
-        ⚠️ نظام إضافة المانهوا - هنا يمكنك التعديل والإضافة بسهولة تامة! ⚠️
-        
-        كل ما عليك فعله هو إضافة عنصر جديد داخل القوسين المربعين [ ] بنفس الصيغة:
-        {
-            title: "اسم المانهوا",
-            rating: "التقييم من 10",
-            image: "رابط الصورة المباشر",
-            genres: ["تصنيف 1", "تصنيف 2"],
-            author: "الكاتب أو حالة العمل",
-            desc: "نبذة مشوقة عن المانهوا أو التحليل الخاص بها"
-        },
+        ⚠️ نظام إدارة وحفظ بيانات المانهوا - مصفوفة برمجية سهلة التعديل والتحكم ⚠️
         =============================================================================
         */
         const manhwaData = [
             {
+                title: "المستحضر الوحيد",
+                rating: "9.7",
+                image: "https://preview.redd.it/lone-necromancer-why-does-nobody-talks-about-this-v0-7u6fnc479f0g1.jpeg?auto=webp&s=8f64739c09377aae6c6817e7817b77ae3b33d793",
+                genres: ["اكشن", "استحضار", "نظام"],
+                author: "مستمره",
+                desc: "فاخر"
+            },
+            {
                 title: "سولو ليفيلينغ (Solo Leveling)",
                 rating: "9.9",
-                image: "https://i.ibb.co/6Rxrd1Bw/IMG-4977.jpg", // الصورة المرفقة الفخمة في طلبك
+                image: "https://i.ibb.co/6Rxrd1Bw/IMG-4977.jpg", 
                 genres: ["أكشن", "خيال", "بوابات", "نظام"],
                 author: "مستمرة",
                 desc: "تشريح مانهوا النخبة الأعظم. القصة تحكي عن تطور البطل صياد الفئة E الضعيف جداً ليصبح ملك الظلال الأقوى، رسم أسطوري بكل تفاصيله ومقاييسه الفنية الاستثنائية."
@@ -586,8 +488,31 @@
                 author: "مكتملة",
                 desc: "واحدة من أفضل مانهوا التكنولوجيا والعودة بالزمن. تطور القصة مذهل، والشخصيات الجانبية تم بناء ذكائها بعناية فائقة لتفادي سذاجة الحوارات السائدة بالأعمال الأخرى."
             }
-            // 💡 يمكنك وضع الأكواد المولدة الجديدة هنا بالأسفل...
         ];
+
+        // --- نظام إظهار التنبيهات والتوست المخصص بدلاً من alert() المزعج ---
+        function showToast(message, isSuccess = true) {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            
+            const checkIcon = `<svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>`;
+            const warnIcon = `<svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>`;
+            
+            toast.innerHTML = `
+                <span class="toast-icon">${isSuccess ? checkIcon : warnIcon}</span>
+                <span>${message}</span>
+            `;
+            
+            container.appendChild(toast);
+            
+            setTimeout(() => toast.classList.add('show'), 50);
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => toast.remove(), 400);
+            }, 3500);
+        }
 
         // --- دالة عرض المانهوا في الشبكة تلقائياً وديناميكياً ---
         function renderManhwas() {
@@ -598,7 +523,6 @@
                 const card = document.createElement('div');
                 card.className = 'manhwa-card';
                 
-                // إنشاء قائمة التصنيفات
                 let genresHTML = '';
                 if(manhwa.genres && manhwa.genres.length > 0) {
                     manhwa.genres.forEach(g => {
@@ -629,78 +553,19 @@
             setupCardTilting();
         }
 
-        // تشغيل البث عند تحميل المستند
         document.addEventListener('DOMContentLoaded', () => {
             renderManhwas();
         });
 
-        // --- دالة توليد كود المانهوا الجديد لنسخه ولصقه بسهولة ---
-        function generateManhwaCode() {
-            const name = document.getElementById('mName').value.trim();
-            const rating = document.getElementById('mRating').value.trim() || "8.5";
-            const image = document.getElementById('mImage').value.trim() || "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=600";
-            const genresRaw = document.getElementById('mGenres').value.trim();
-            const author = document.getElementById('mAuthor').value.trim() || "مستمرة";
-            const desc = document.getElementById('mDesc').value.trim() || "اكتب قصة العمل وتفاصيله الفنية الرائعة هنا.";
-
-            if (!name) {
-                alert('يرجى إدخال اسم المانهوا على الأقل لتوليد الكود!');
-                return;
-            }
-
-            // تقسيم التصنيفات إلى مصفوفة
-            const genresArray = genresRaw ? genresRaw.split(',').map(g => g.trim()) : ["أكشن"];
-            const genresFormatted = JSON.stringify(genresArray);
-
-            const generatedCode = `{\n    title: "${name}",\n    rating: "${rating}",\n    image: "${image}",\n    genres: ${genresFormatted},\n    author: "${author}",\n    desc: "${desc}"\n},`;
-
-            document.getElementById('generatedCodeText').innerHTML = 
-                `<span class="hl-comment">// انسخ هذا الجزء وأضفه داخل مصفوفة manhwaData بالأسفل</span>\n` +
-                `{\n` +
-                `    <span class="hl-key">title</span>: <span class="hl-val">"${name}"</span>,\n` +
-                `    <span class="hl-key">rating</span>: <span class="hl-val">"${rating}"</span>,\n` +
-                `    <span class="hl-key">image</span>: <span class="hl-val">"${image}"</span>,\n` +
-                `    <span class="hl-key">genres</span>: <span class="hl-val">${genresFormatted}</span>,\n` +
-                `    <span class="hl-key">author</span>: <span class="hl-val">"${author}"</span>,\n` +
-                `    <span class="hl-key">desc</span>: <span class="hl-val">"${desc}"</span>\n` +
-                `},`;
-
-            document.getElementById('generatedCodeArea').style.display = 'block';
-            
-            // تمرير تلقائي لرؤية الكود المولد
-            document.getElementById('generatedCodeArea').scrollIntoView({ behavior: 'smooth' });
-            
-            // تفعيل زر النسخ المباشر
-            const copyBtn = document.getElementById('copyBtn');
-            copyBtn.onclick = () => {
-                const el = document.createElement('textarea');
-                el.value = generatedCode;
-                document.body.appendChild(el);
-                el.select();
-                try {
-                    document.execCommand('copy');
-                    copyBtn.innerHTML = `<svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>`;
-                    copyBtn.classList.add('copied');
-                    setTimeout(() => {
-                        copyBtn.innerHTML = `<svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>`;
-                        copyBtn.classList.remove('copied');
-                    }, 2000);
-                } catch (err) {
-                    console.error('فشل في نسخ الكود: ', err);
-                }
-                document.body.removeChild(el);
-            };
-        }
-
-        // --- التحكم بالماوس ومؤشر الحركة ---
+        // --- التحكم بالماوس ومؤشر الحركة الفريد ---
         const cursor = document.getElementById('cursor'), ring = document.getElementById('cursor-ring');
         let mx = 0, my = 0, rx = 0, ry = 0;
         document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cursor.style.left = mx+'px'; cursor.style.top = my+'px'; });
         (function anim() { rx += (mx - rx) * 0.2; ry += (my - ry) * 0.2; ring.style.left = rx+'px'; ring.style.top = ry+'px'; requestAnimationFrame(anim); })();
         
-        // تفاعلات الأزرار والماوس
+        // ربط تفاعلات الأزرار والنقر بمؤشر الماوس
         function setupButtonInteractions() {
-            document.querySelectorAll('a, button, .manhwa-card, input, textarea, .copy-btn').forEach(el => {
+            document.querySelectorAll('a, button, .manhwa-card').forEach(el => {
                 el.addEventListener('mouseenter', () => { 
                     ring.style.width = '60px'; ring.style.height = '60px'; 
                     ring.style.background = 'rgba(255, 34, 34, 0.15)';
@@ -715,7 +580,7 @@
         }
         setupButtonInteractions();
 
-        // تدوير بطاقات المانهوا بشكل مبهر 3D
+        // تدوير بطاقات المانهوا بـ 3D
         function setupCardTilting() {
             document.querySelectorAll('.manhwa-card').forEach(card => {
                 card.addEventListener('mousemove', e => {
@@ -735,7 +600,7 @@
             setupButtonInteractions();
         }
 
-        // --- تأثيرات شريط التنقل العلوي ---
+        // --- تأثيرات شريط التنقل العلوي المتغير مع النزول ---
         window.addEventListener('scroll', () => document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 50));
 
         // --- نظام رادار SLAX للمانهوا المتقدم ---
@@ -747,7 +612,7 @@
         function generateTargets() {
             radarTargets = [];
             const num = Math.floor(Math.random() * 8) + 3;
-            const names = ["SOLO", "MAD_KING", "HACKER", "ORV", "TOWER", "HERO", "LEVEL"];
+            const names = ["SOLO", "MAD_KING", "HACKER", "ORV", "TOWER", "HERO", "LONE_NECRO"];
             for(let i=0; i<num; i++) {
                 radarTargets.push({
                     angle: Math.random() * Math.PI * 2, 
@@ -808,7 +673,7 @@
         }
         drawRadar();
 
-        // --- التحكم بصوت خلفية الفيديو الفوري مع الحفاظ على التشغيل التلقائي الصامت ---
+        // --- التحكم بصوت خلفية الفيديو الفوري ---
         const bgVideo = document.getElementById('bgVideo');
         const soundToggle = document.getElementById('soundToggle');
         const soundIcon = document.getElementById('soundIcon');
@@ -816,7 +681,7 @@
         window.addEventListener('DOMContentLoaded', () => {
             bgVideo.muted = true;
             bgVideo.play().catch(err => {
-                console.log("فشل التشغيل التلقائي بسبب قيود المتصفح: ", err);
+                console.log("فشل التشغيل التلقائي الصامت: ", err);
             });
         });
 
@@ -827,24 +692,17 @@
                 soundIcon.innerHTML = `<path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>`;
                 soundToggle.style.background = 'rgba(74, 222, 128, 0.25)';
                 soundToggle.style.borderColor = '#4ade80';
+                showToast('تم تفعيل صوت الخلفية بنجاح 🔊');
             } else {
                 bgVideo.muted = true;
                 soundIcon.innerHTML = `<path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77zM4.17 9H2v6h2.17L9 19.83V4.17L4.17 9z"/>`;
                 soundToggle.style.background = 'rgba(255, 34, 34, 0.1)';
                 soundToggle.style.borderColor = 'var(--primary)';
-          {
-    title: "المستحضر الوحيد",
-    rating: "9.7",
-    image: "https://preview.redd.it/lone-necromancer-why-does-nobody-talks-about-this-v0-7u6fnc479f0g1.jpeg?auto=webp&s=8f64739c09377aae6c6817e7817b77ae3b33d793",
-    genres: ["اكشن،استحضار،نظام،"],
-    author: "مستمره",
-    desc: "فاخر"
-},
-            
+                showToast('تم كتم صوت الخلفية 🔇');
             }
         });
     </script>
 </body>
 </html>
 
-
+```
