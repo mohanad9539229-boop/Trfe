@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>SLAX MANHWA | التشريح الأعظم للمانهوا</title>
+    <title>SLAX MANHWA | منصة المانهوا النخبوية</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=Outfit:wght@300;400;600;800;900&family=Space+Grotesk:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -49,12 +49,12 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            opacity: 0.35; 
+            opacity: 0.45; 
         }
         .video-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(180deg, rgba(6, 1, 1, 0.65) 0%, rgba(6, 1, 1, 0.95) 100%);
+            background: linear-gradient(180deg, rgba(6, 1, 1, 0.5) 0%, rgba(6, 1, 1, 0.95) 100%);
             z-index: -9;
         }
 
@@ -85,7 +85,7 @@
             color: #000;
         }
 
-        /* نظام التنبيهات المخصص */
+        /* نظام التنبيهات المخصص للتوست */
         .toast-container {
             position: fixed;
             top: 2rem;
@@ -260,11 +260,77 @@
         .stat-label { font-size: 1rem; font-weight: 800; color: #ffffff; margin-top: 0.8rem; display: block; text-shadow: 0 2px 5px rgba(0,0,0,0.9); }
 
         /* معرض مانهوا SLAX المذهل */
-        .manhwa-section { padding: 8rem 1rem; max-width: 1300px; margin: 0 auto; position: relative; z-index: 110; }
-        .section-head { text-align: center; margin-bottom: 5rem; opacity: 1 !important; transform: none !important; }
+        .manhwa-section { padding: 8rem 1rem 12rem; max-width: 1300px; margin: 0 auto; position: relative; z-index: 110; }
+        .section-head { text-align: center; margin-bottom: 4rem; opacity: 1 !important; transform: none !important; }
         .section-tag { font-size: 0.95rem; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase; background: var(--gradient-aurora); -webkit-background-clip: text; color: transparent; display: inline-block; margin-bottom: 1rem; }
         .section-title { font-family: 'Outfit', 'Cairo', sans-serif; font-size: clamp(2.2rem, 5vw, 4rem); font-weight: 800; color: #ffffff; line-height: 1.2; text-shadow: 0 2px 10px rgba(0,0,0,0.9); }
         .section-title em { font-style: normal; color: var(--primary); text-shadow: 0 0 30px var(--primary-glow); }
+
+        /* شريط البحث النخبوي الجديد */
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto 5rem;
+            padding: 0 1rem;
+            position: relative;
+            z-index: 100;
+        }
+        .search-box {
+            display: flex;
+            align-items: center;
+            background: rgba(20, 5, 5, 0.85);
+            border: 2px solid rgba(255, 34, 34, 0.3);
+            border-radius: 12px;
+            padding: 0.4rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+        .search-box:focus-within {
+            border-color: var(--primary);
+            box-shadow: 0 0 20px var(--primary-glow);
+        }
+        .search-box input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            outline: none;
+            color: #fff;
+            font-family: 'Cairo', sans-serif;
+            font-size: 1rem;
+            padding: 0.8rem 1.2rem;
+        }
+        .search-box input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+        .search-btn {
+            background: var(--gradient-aurora);
+            border: none;
+            outline: none;
+            color: #fff;
+            padding: 0.8rem 1.8rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: 'Cairo', sans-serif;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+        }
+        .search-btn:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 15px var(--primary-glow);
+        }
+        
+        /* حالة عدم العثور على نتائج */
+        .no-results {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 5rem 1rem;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
 
         /* شبكة عرض المانهوا الديناميكية */
         .manhwa-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2.5rem; }
@@ -286,22 +352,6 @@
         
         .card-title { font-size: 1.35rem; font-weight: 800; color: #ffffff; margin-bottom: 0.6rem; text-shadow: 0 2px 4px rgba(0,0,0,0.8); }
         .card-desc { font-size: 0.95rem; color: #cccccc; line-height: 1.6; height: 75px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; text-shadow: 0 1px 2px rgba(0,0,0,0.8); }
-
-        /* قسم التحليل والرادار */
-        .showcase-wrap { padding: 8rem 1rem 12rem; background: radial-gradient(circle at center, rgba(35, 5, 5, 0.45) 0%, transparent 60%); border-top: 1px solid var(--border-light); position: relative; z-index: 120; }
-        .showcase-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
-        
-        .visuals-container { display: flex; flex-direction: column; gap: 2rem; width: 100%; max-width: 500px; margin: 0 auto; opacity: 1 !important; transform: none !important; }
-        
-        .showcase-visual { position: relative; width: 100%; aspect-ratio: 1/1; border-radius: 30px; border: 2px solid rgba(255, 34, 34, 0.4); background: rgba(6,1,1,0.95); backdrop-filter: blur(20px); display: flex; align-items: center; justify-content: center; overflow: hidden; box-shadow: inset 0 0 100px rgba(0,0,0,0.95), 0 0 50px rgba(255, 34, 34, 0.35); }
-        .grid-bg { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px); background-size: 40px 40px; animation: gridPan 30s linear infinite; }
-
-        .sc-title { font-family: 'Outfit', 'Cairo', sans-serif; font-size: clamp(2.3rem, 4vw, 3.8rem); font-weight: 800; color: #ffffff; margin-bottom: 1.5rem; line-height: 1.2; text-shadow: 0 2px 10px rgba(0,0,0,0.9); }
-        .sc-body { color: #ffffff; font-size: 1.15rem; line-height: 1.8; margin-bottom: 2.5rem; font-weight: 600; text-shadow: 0 2px 15px rgba(0,0,0,0.95); }
-        
-        .check-list { display: flex; flex-direction: column; gap: 1.2rem; }
-        .check-item { display: flex; align-items: center; gap: 1.2rem; font-size: 1.1rem; font-weight: 800; color: #ffffff; text-shadow: 0 2px 5px rgba(0,0,0,0.9); }
-        .check-mark { width: 28px; height: 28px; border-radius: 8px; background: rgba(255, 34, 34, 0.3); border: 2px solid var(--primary); display: flex; align-items: center; justify-content: center; color: var(--primary); font-size: 0.95rem; box-shadow: 0 0 15px var(--primary-glow); flex-shrink: 0; }
 
         /* تذييل الصفحة */
         footer { padding: 4rem 1rem; border-top: 1px solid var(--border-light); display: flex; justify-content: space-between; align-items: center; background: #060101; z-index: 150; position: relative; }
@@ -325,8 +375,6 @@
             nav { padding: 1rem 1.5rem; }
             .nav-links { display: none; }
             .stats-inner { grid-template-columns: repeat(2, 1fr); gap: 3rem; }
-            .showcase-inner { grid-template-columns: 1fr; }
-            .stat:not(:last-child)::after { display: none; }
             footer { flex-direction: column; gap: 1rem; text-align: center; }
             .hero { padding-top: 8rem; }
             .btn-discord-wide { font-size: 1rem; padding: 1.2rem; }
@@ -343,10 +391,10 @@
     <div id="cursor-ring" style="left: 0px; top: 0px;"></div>
     <div class="noise"></div>
     
-    <!-- خلفية الفيديو المدمجة -->
+    <!-- خلفية الفيديو المدمجة والحديثة للغاية -->
     <div class="video-background">
         <video autoplay loop muted playsinline id="bgVideo">
-            <source src="https://www.image2url.com/r2/default/videos/1780687433252-c4b32f32-aee3-4e5d-b625-ac2870adcd86.mp4" type="video/mp4">
+            <source src="https://www.image2url.com/r2/default/videos/1781030466501-7d44b91f-a686-4b3e-8fe6-4698b5331112.mp4" type="video/mp4">
         </video>
         <div class="video-overlay"></div>
     </div>
@@ -354,7 +402,7 @@
     <!-- زر التحكم بالصوت -->
     <button class="sound-control-btn" id="soundToggle" title="تشغيل/إيقاف الصوت">
         <svg id="soundIcon" width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77zM4.17 9H2v6h2.17L9 19.83V4.17L4.17 9z"/>
+            <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
         </svg>
     </button>
 
@@ -367,21 +415,21 @@
         </a>
 
         <ul class="nav-links">
-            <li><a href="#catalog">المعرض والتشريح</a></li>
-            <li><a href="#analysis">رادار التشريح</a></li>
+            <li><a href="#">الرئيسية</a></li>
+            <li><a href="#catalog">المعرض النخبوي</a></li>
         </ul> 
     </nav>
 
     <section class="hero">
         <div class="blob blob-1"></div>
         <div class="blob blob-2"></div>
-        <div class="hero-badge"><span class="badge-dot"></span>منصة تشريح المانهوا النخبوية</div>
+        <div class="hero-badge"><span class="badge-dot"></span>منصة المانهوا النخبوية</div>
         <h1 class="hero-title"><em>SLAX MANHWA</em></h1>
 
-        <p class="hero-desc">الموقع الرسمي الأول لتشريح، تقييم، وتفنيد تفاصيل أشهر فصول وأعمال المانهوا العالمية. نحن لا نعرض القصص فقط، بل نقوم بتحليل كل كادر وكل رسمة بأسلوب نخبوّي احترافي.</p>
+        <p class="hero-desc">الموقع الرسمي الأول لعرض وتقديم أشهر فصول وأعمال المانهوا العالمية. واجهتكم النخبوية المثالية لتصفح الأعمال الفنية الرائعة والمختارة بعناية فائقة لضمان أقصى درجات التميز والإثارة.</p>
         
         <div class="hero-action-area">
-            <a href="https://discord.gg/ufMNhq3j42" target="_blank" class="btn-discord-wide">
+            <a href="https://discord.gg/ENxxRMz4GC" target="_blank" class="btn-discord-wide">
                 <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"></path></svg>
                  انضم لمجتمع النخبة على ديسكورد
             </a>
@@ -392,15 +440,15 @@
         <div class="stats-inner">
             <div class="stat"> 
                 <span class="stat-num">24<span class="stat-unit">/7</span></span>
-                <span class="stat-label">مراقبة وتحديث مستمر</span>
+                <span class="stat-label">تحديث مستمر ومراقبة</span>
             </div>
             <div class="stat"> 
                 <span class="stat-num">9.8<span class="stat-unit">★</span></span>
-                <span class="stat-label">متوسط تقييم الأعمال المختارة</span>
+                <span class="stat-label">متوسط تقييم مانهوا SLAX</span>
             </div>
             <div class="stat"> 
                 <span class="stat-num">100<span class="stat-unit">%</span></span>
-                <span class="stat-label">تفصيل دقيق بدون حرق</span>
+                <span class="stat-label">أعمال منتقاة وحصرية</span>
             </div>
             <div class="stat"> 
                 <span class="stat-num">VIP<span class="stat-unit"></span></span>
@@ -412,42 +460,29 @@
     <!-- قسم المعرض وعرض المانهوا -->
     <section id="catalog" class="manhwa-section">
         <div class="section-head"> 
-            <span class="section-tag">أرشيف الأعمال المشرحة</span>
+            <span class="section-tag">أرشيف الأعمال الفاخرة</span>
             <h2 class="section-title">أقوى أعمال المانهوا على <em>SLAX</em></h2>
+        </div>
+        
+        <!-- حقل البحث الجديد والذكي -->
+        <div class="search-container">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="ابحث عن مانهوا بالاسم أو التصنيف...">
+                <button class="search-btn" onclick="filterManhwas()">
+                    <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                    <span>بحث</span>
+                </button>
+            </div>
         </div>
         
         <div class="manhwa-grid" id="manhwaGrid"></div>
     </section>
 
-    <!-- قسم رادار التشريح والتحليل -->
-    <section id="analysis" class="showcase-wrap">
-        <div class="showcase-inner">
-            <div class="visuals-container">
-                <div class="showcase-visual">
-                    <div class="grid-bg"></div>
-                    <canvas id="radarCanvas" width="500" height="500" style="position:relative; z-index:5; width: 100%; height: auto;"></canvas>
-                    <div style="position:absolute; bottom:1.5rem; right:1.5rem; font-family:'Space Grotesk', 'Cairo'; font-size:0.75rem; font-weight:700; letter-spacing:0.1em; color:var(--primary); z-index:5; text-shadow: 0 0 10px var(--primary-glow);">SLAX // DISSECTION SYSTEM</div>
-                </div>
-            </div>
-            
-            <div> 
-                <span class="section-tag">الهيمنة والتحليل التام</span>
-                <h3 class="sc-title">آلية تشريح <em>لا ترحم الأخطاء</em></h3>
-                <p class="sc-body">في SLAX MANHWA، نتبع نهجاً علمياً ونقداً لاذعاً لتصنيف المانهوا بناءً على عمق الحبكة البرمجية للقصة، وقوة الرسامين، ومعدل استقرار الأحداث والوتيرة دون مماطلة.</p>
-                
-                <div class="check-list">
-                    <div class="check-item"><span class="check-mark">✓</span> تحليل خطوط الرسم وجودة توزيع المؤثرات البصرية</div>
-                    <div class="check-item"><span class="check-mark">✓</span> تفكيك بنية القصة والشخصيات وتطورها النفسي والدرامي</div>
-                    <div class="check-item"><span class="check-mark">✓</span> نظام تصنيف ذكي متاح لجميع زوار موقعنا الفخم</div>
-                    <div class="check-item"><span class="check-mark">✓</span> تحديث يومي وفحص مستمر لأحدث تسريبات الأجنحة الكورية</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <footer>
         <div class="foot-logo">SLAX MANHWA</div>
-        <div style="font-size: 0.9rem; color: var(--text-muted); font-weight: 500;">© 2026 تم التطوير للتحليل، التميز المطلق وهيبة الأعمال الفنية</div>
+        <div style="font-size: 0.9rem; color: var(--text-muted); font-weight: 500;">© 2026 تم التطوير للتميز المطلق وهيبة الأعمال الفنية</div>
     </footer>
 
     <script>
@@ -470,7 +505,7 @@
                 image: "https://i.ibb.co/6Rxrd1Bw/IMG-4977.jpg", 
                 genres: ["أكشن", "خيال", "بوابات", "نظام"],
                 author: "مستمرة",
-                desc: "تشريح مانهوا النخبة الأعظم. القصة تحكي عن تطور البطل صياد الفئة E الضعيف جداً ليصبح ملك الظلال الأقوى، رسم أسطوري بكل تفاصيله ومقاييسه الفنية الاستثنائية."
+                desc: "واجهة مانهوا النخبة الأعظم. القصة تحكي عن تطور البطل صياد الفئة E الضعيف جداً ليصبح ملك الظلال الأقوى، رسم أسطوري بكل تفاصيله ومقاييسه الفنية الاستثنائية."
             },
             {
                 title: "عودة الملك المجنون",
@@ -490,7 +525,7 @@
             }
         ];
 
-        // --- نظام إظهار التنبيهات والتوست المخصص بدلاً من alert() المزعج ---
+        // --- نظام إظهار التنبيهات المخصصة ---
         function showToast(message, isSuccess = true) {
             const container = document.getElementById('toastContainer');
             const toast = document.createElement('div');
@@ -553,6 +588,75 @@
             setupCardTilting();
         }
 
+        // --- دالة الفلترة والبحث الذكية للمانهوا ---
+        function filterManhwas() {
+            const query = document.getElementById('searchInput').value.trim().toLowerCase();
+            const grid = document.getElementById('manhwaGrid');
+            grid.innerHTML = '';
+            
+            const filtered = manhwaData.filter(manhwa => {
+                const titleMatch = manhwa.title.toLowerCase().includes(query);
+                const descMatch = manhwa.desc.toLowerCase().includes(query);
+                const genresMatch = manhwa.genres.some(g => g.toLowerCase().includes(query));
+                return titleMatch || descMatch || genresMatch;
+            });
+            
+            if (filtered.length === 0) {
+                grid.innerHTML = `
+                    <div class="no-results">
+                        <svg width="64" height="64" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" style="color: var(--primary); margin-bottom: 1.5rem; opacity: 0.8;">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <p>عذراً، لم نجد أي أعمال تطابق بحثك الحالي!</p>
+                    </div>
+                `;
+                showToast('لم نجد أي مانهوا مطابقة لبحثك', false);
+            } else {
+                filtered.forEach((manhwa) => {
+                    const card = document.createElement('div');
+                    card.className = 'manhwa-card';
+                    
+                    let genresHTML = '';
+                    if(manhwa.genres && manhwa.genres.length > 0) {
+                        manhwa.genres.forEach(g => {
+                            genresHTML += `<span class="genre-tag">${g}</span>`;
+                        });
+                    }
+                    
+                    card.innerHTML = `
+                        <div class="card-img-container">
+                            <img src="${manhwa.image}" alt="${manhwa.title}" onerror="this.src='https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=600'">
+                            <div class="card-overlay"></div>
+                            <div class="card-rating">
+                                <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.787 1.4 8.168L12 18.896l-7.334 3.857 1.4-8.168L.132 9.21l8.2-1.192L12 .587z"/>
+                                </svg>
+                                ${manhwa.rating}
+                            </div>
+                        </div>
+                        <div class="card-info">
+                            <div class="card-genres">${genresHTML}</div>
+                            <h3 class="card-title">${manhwa.title}</h3>
+                            <p class="card-desc">${manhwa.desc}</p>
+                        </div>
+                    `;
+                    grid.appendChild(card);
+                });
+                
+                setupCardTilting();
+                if (query !== "") {
+                    showToast(`تم العثور على ${filtered.length} عمل مطابق!`);
+                }
+            }
+        }
+
+        // الاستماع لضغط زر Enter في صندوق البحث للبحث الفوري
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                filterManhwas();
+            }
+        });
+
         document.addEventListener('DOMContentLoaded', () => {
             renderManhwas();
         });
@@ -565,7 +669,7 @@
         
         // ربط تفاعلات الأزرار والنقر بمؤشر الماوس
         function setupButtonInteractions() {
-            document.querySelectorAll('a, button, .manhwa-card').forEach(el => {
+            document.querySelectorAll('a, button, .manhwa-card, input').forEach(el => {
                 el.addEventListener('mouseenter', () => { 
                     ring.style.width = '60px'; ring.style.height = '60px'; 
                     ring.style.background = 'rgba(255, 34, 34, 0.15)';
@@ -602,76 +706,6 @@
 
         // --- تأثيرات شريط التنقل العلوي المتغير مع النزول ---
         window.addEventListener('scroll', () => document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 50));
-
-        // --- نظام رادار SLAX للمانهوا المتقدم ---
-        const rCanvas = document.getElementById('radarCanvas');
-        const rctx = rCanvas.getContext('2d');
-        let angle = 0;
-        let radarTargets = [];
-
-        function generateTargets() {
-            radarTargets = [];
-            const num = Math.floor(Math.random() * 8) + 3;
-            const names = ["SOLO", "MAD_KING", "HACKER", "ORV", "TOWER", "HERO", "LONE_NECRO"];
-            for(let i=0; i<num; i++) {
-                radarTargets.push({
-                    angle: Math.random() * Math.PI * 2, 
-                    dist: Math.random() * 180 + 30,
-                    id: names[Math.floor(Math.random() * names.length)] + "_" + Math.floor(Math.random()*99).toString().padStart(2, '0'),
-                    rating: (Math.random() * 2 + 8).toFixed(1), 
-                    opacity: 0
-                });
-            }
-        }
-        generateTargets();
-        setInterval(generateTargets, 6000);
-
-        function drawRadar() {
-            rctx.clearRect(0, 0, 500, 500);
-            const cx = 250, cy = 250;
-            
-            rctx.strokeStyle = 'rgba(255, 34, 34, 0.2)';
-            rctx.lineWidth = 1;
-            [50, 100, 150, 200].forEach(r => { rctx.beginPath(); rctx.arc(cx, cy, r, 0, Math.PI*2); rctx.stroke(); });
-            
-            rctx.beginPath(); rctx.moveTo(cx, cy-220); rctx.lineTo(cx, cy+220);
-            rctx.moveTo(cx-220, cy); rctx.lineTo(cx+220, cy);
-            rctx.strokeStyle = 'rgba(255, 34, 34, 0.1)'; rctx.stroke();
-
-            angle = (angle + 0.03) % (Math.PI * 2);
-            rctx.save(); rctx.translate(cx, cy); rctx.rotate(angle);
-            const grad = rctx.createConicGradient(0, 0, 0);
-            grad.addColorStop(0, 'rgba(255, 34, 34, 0)'); grad.addColorStop(0.15, 'rgba(255, 34, 34, 0.3)');
-            grad.addColorStop(0.2, 'rgba(255, 34, 34, 0.8)'); grad.addColorStop(0.201, 'rgba(255, 34, 34, 0)');
-            rctx.fillStyle = grad;
-            rctx.beginPath(); rctx.arc(0, 0, 220, 0, Math.PI*2); rctx.fill();
-            rctx.restore();
-
-            radarTargets.forEach(t => {
-                let diff = angle - t.angle;
-                while(diff < 0) diff += Math.PI*2; while(diff > Math.PI*2) diff -= Math.PI*2;
-                if(diff < 0.1) t.opacity = 1; else t.opacity = Math.max(0, t.opacity - 0.015);
-
-                if(t.opacity > 0.05) {
-                    let tx = cx + Math.cos(t.angle) * t.dist;
-                    let ty = cy + Math.sin(t.angle) * t.dist;
-                    
-                    rctx.globalAlpha = t.opacity;
-                    rctx.beginPath(); rctx.arc(tx, ty, 4, 0, Math.PI*2);
-                    rctx.fillStyle = '#fff'; rctx.shadowBlur = 15; rctx.shadowColor = '#ff2222'; rctx.fill();
-                    
-                    rctx.shadowBlur = 0;
-                    rctx.fillStyle = `rgba(255, 34, 34, ${t.opacity})`;
-                    rctx.font = "10px 'Space Grotesk', 'Cairo'";
-                    rctx.fillText(`[${t.id}]`, tx + 8, ty - 5);
-                    rctx.fillStyle = `rgba(255, 255, 255, ${t.opacity * 0.7})`;
-                    rctx.fillText(`RATE: ${t.rating} ★`, tx + 8, ty + 7);
-                    rctx.globalAlpha = 1;
-                }
-            });
-            requestAnimationFrame(drawRadar);
-        }
-        drawRadar();
 
         // --- التحكم بصوت خلفية الفيديو الفوري ---
         const bgVideo = document.getElementById('bgVideo');
