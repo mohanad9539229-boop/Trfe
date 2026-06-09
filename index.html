@@ -337,7 +337,7 @@
         .manhwa-card { background: linear-gradient(180deg, rgba(20, 5, 5, 0.92) 0%, rgba(10, 2, 2, 0.7) 100%); border: 2px solid rgba(255,34,34,0.3); border-radius: 20px; overflow: hidden; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); position: relative; box-shadow: 0 15px 35px rgba(0,0,0,0.8); transition: box-shadow 0.4s, border 0.4s, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
         .manhwa-card:hover { box-shadow: 0 30px 60px rgba(0,0,0,0.9), 0 0 40px rgba(255, 34, 34, 0.45); border-color: var(--primary); transform: translateY(-10px); }
         
-        .card-img-container { width: 100%; height: 380px; position: relative; overflow: hidden; }
+        .card-img-container { width: 100%; height: 380px; position: relative; overflow: hidden; background-color: #120303; }
         .card-img-container img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
         .manhwa-card:hover .card-img-container img { transform: scale(1.08); }
         
@@ -350,8 +350,8 @@
         .card-genres { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.8rem; }
         .genre-tag { font-size: 0.75rem; background: rgba(255, 34, 34, 0.15); border: 1px solid rgba(255, 34, 34, 0.4); color: #fff; padding: 0.2rem 0.6rem; border-radius: 4px; font-weight: 700; }
         
-        .card-title { font-size: 1.35rem; font-weight: 800; color: #ffffff; margin-bottom: 0.6rem; text-shadow: 0 2px 4px rgba(0,0,0,0.8); }
-        .card-desc { font-size: 0.95rem; color: #cccccc; line-height: 1.6; height: 75px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; text-shadow: 0 1px 2px rgba(0,0,0,0.8); }
+        .card-title { font-size: 1.15rem; font-weight: 800; color: #ffffff; margin-bottom: 0.6rem; text-shadow: 0 2px 4px rgba(0,0,0,0.8); line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; height: 42px; }
+        .card-desc { font-size: 0.9rem; color: #cccccc; line-height: 1.6; height: 75px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; text-shadow: 0 1px 2px rgba(0,0,0,0.8); }
 
         /* تذييل الصفحة */
         footer { padding: 4rem 1rem; border-top: 1px solid var(--border-light); display: flex; justify-content: space-between; align-items: center; background: #060101; z-index: 150; position: relative; }
@@ -487,14 +487,14 @@
 
     <script>
         /* =============================================================================
-        ⚠️ تم ملء المصفوفة بالبيانات النخبوية المدمجة بنجاح ⚠️
+        ⚠️ تم تصحيح الروابط لتكون روابط صور مباشرة لتعمل بنجاح ⚠️
         =============================================================================
         */
         const manhwaData = [
           {
             "title": "أقوى نكرومانسر بخصائص تطورية / Strongest Necromancer with Evolutionary Characteristics",
             "rating": "8.8",
-            "image": "https://ibb.co/dsM9s33x",
+            "image": "https://i.ibb.co/dsM9s33x/image.png",
             "genres": ["اكشن", "خيال", "نظام", "مغامرة"],
             "author": "مستمر",
             "desc": "تدور القصة حول مستدعي أرواح (نكرومانسر) يستيقظ بقدرات فريدة وخاصية تطورية استثنائية، تتيح للمخلوقات التي يستدعيها من الموت التطور واكتساب مهارات مدمرة تتجاوز الحدود الطبيعية ليصبح الأقوى."
@@ -502,7 +502,7 @@
           {
             "title": "الشرير يريد أن يعيش / The Villain Wants to Live",
             "rating": "9.2",
-            "image": "https://ibb.co/zV14kN5Y",
+            "image": "https://i.ibb.co/zV14kN5Y/image.png",
             "genres": ["اكشن", "خيال", "إعادة تجسيد", "دراما"],
             "author": "مستمر",
             "desc": "يستيقظ بطل الرواية داخل لعبة فيديو شهيرة كـ 'ديكلين'، وهو شرير ثانوي غني وذو كبرياء شديد، لكن مصيره الموت الحتمي في كل مسارات اللعبة. يبدأ صراعاً ذكياً ومريرًا للبقاء على قيد الحياة وتغيير قدره المحتوم."
@@ -510,7 +510,7 @@
           {
             "title": "كيف يعيش الابن غير الشرعي لعائلة السيف العائدة / How the Bastard of a Regressed Sword Clan Lives",
             "rating": "8.9",
-            "image": "https://ibb.co/JWFyzn9r",
+            "image": "https://i.ibb.co/JWFyzn9r/image.png",
             "genres": ["اكشن", "خيال", "فنون قتالية", "العودة بالزمن"],
             "author": "مستمر",
             "desc": "بعد أن عاش حياة بائسة كابن غير شرعي ومنبوذ في أعظم عائلات السيافين، يحصل البطل على فرصة ثانية ويعود بالزمن إلى الوراء. مستعيناً بمعرفته المستقبلية، يقرر شق طريقه الخاص بالقوة والذكاء ليتفوق على الجميع."
@@ -518,7 +518,7 @@
           {
             "title": "معيار التناسخ / The Standard of Reincarnation",
             "rating": "9.1",
-            "image": "https://ibb.co/KxRhkPLg",
+            "image": "https://i.ibb.co/KxRhkPLg/image.png",
             "genres": ["اكشن", "خيال", "إعادة تجسيد", "انتقام"],
             "author": "مستمر",
             "desc": "ولد بذراع واحدة وعاش كعاطل منبوذ في عائلة محاربين أسطورية ليقتل غدراً في النهاية. لكنه يمنح فرصة جديدة ليتجسد مجدداً في الماضي كطفل في نفس العائلة ولكن بجسد كامل وذراعين سليمتين، ليبدأ رحلة انتقامه الساحقة."
@@ -526,7 +526,7 @@
           {
             "title": "رفع المستوى الفردي / Solo Leveling",
             "rating": "9.9",
-            "image": "https://ibb.co/KpHd5Lbg",
+            "image": "https://i.ibb.co/KpHd5Lbg/image.png",
             "genres": ["اكشن", "خيال", "نظام", "بوابات"],
             "author": "مكتمل",
             "desc": "في عالم مليء بالبوابات والوحوش، يُعرف سونغ جين-وو بأنه 'أضعف صياد في البشرية'. ولكن بعد حادثة مأساوية غامضة في معبد مزدوج، يستيقظ في المشفى ليجد نفسه متصلاً بنظام فريد يتيح له وحده رفع مستواه وقوته بلا حدود."
@@ -534,7 +534,7 @@
           {
             "title": "الجندي الهيكل العظمي فشل في حماية الدهليز / The Skeleton Soldier Failed to Defend the Dungeon",
             "rating": "9.0",
-            "image": "https://ibb.co/NdTgD0CR",
+            "image": "https://i.ibb.co/NdTgD0CR/image.png",
             "genres": ["اكشن", "خيال", "العودة بالزمن", "غموض"],
             "author": "مستمر",
             "desc": "هيكل عظمي بسيط مخلص لسيدته يحمي دهليزاً غامضاً، لكن عند تعرضهم للهجوم وموته، يستيقظ بالزمن إلى الوراء مع الاحتفاظ بمهاراته السابقة. لتبدأ دوامة لا تنتهي من الموت والولادة لحماية سيدته وكشف أسرار هذا العالم الكئيب."
@@ -542,7 +542,7 @@
           {
             "title": "أوديسة الدهليز / Dungeon Odyssey",
             "rating": "9.3",
-            "image": "https://ibb.co/ccfVVChZ",
+            "image": "https://i.ibb.co/ccfVVChZ/image.png",
             "genres": ["اكشن", "خيال", "كوميديا", "بناء وتطوير"],
             "author": "مستمر",
             "desc": "ولد البطل وترعرع في أعماق الدهاليز المظلمة محاطاً بالوحوش. بعد خروجه للبشرية، يعود مجدداً إلى العالم السفلي بصفته 'صاحب دهليز'، ليبدأ في بناء مملكته الخاصة وإدارتها بأسلوب فريد ممزوج بالقتال الحماسي والكوميديا."
@@ -550,7 +550,7 @@
           {
             "title": "عودة قاتل التنانين منقطعة النظير / A Dragonslayer's Peerless Regression",
             "rating": "9.1",
-            "image": "https://ibb.co/yn4MSxyn",
+            "image": "https://i.ibb.co/yn4MSxyn/image.png",
             "genres": ["اكشن", "خيال", "العودة بالزمن", "دراما"],
             "author": "مستمر",
             "desc": "بعد فناء البشرية وسقوطها أمام قوة التنانين الكارثية، يعود قاتل التنانين الأقوى بالزمن إلى الماضي عندما كان لا يزال مجرد متدرب شاب. يقرر استغلال هذه الفرصة لتعديل أخطائه وبناء قوة لا تُقهر استعداداً للحرب النهائية."
@@ -558,7 +558,7 @@
           {
             "title": "شبح سيف جبل هوا العبقري / Mount Hua Sect's Genius Sword Ghost",
             "rating": "9.0",
-            "image": "https://ibb.co/XZ26cGh7",
+            "image": "https://i.ibb.co/XZ26cGh7/image.png",
             "genres": ["اكشن", "فنون قتالية", "خيال", "تاريخي"],
             "author": "مستمر",
             "desc": "تدور القصة حول مبارز ذو موهبة مرعبة في فن السيف ينضم إلى طائفة جبل هوا الشهيرة، حيث تثير حركاته السريعة والقاتلة كالأشباح رعب وإعجاب الجميع، بينما يسحق خصومه لإعادة المجد لطائفته."
@@ -566,7 +566,7 @@
           {
             "title": "النكرومانسر الكارثي / Catastrophic Necromancer",
             "rating": "8.9",
-            "image": "https://ibb.co/fzB0yvSS",
+            "image": "https://i.ibb.co/fzB0yvSS/image.png",
             "genres": ["اكشن", "خيال", "نظام", "مغامرة"],
             "author": "مستمر",
             "desc": "في عالم مدمج بالكامل مع نظام ألعاب الفيديو، يختار البطل فئة 'مستحضر الأرواح' (النكرومانسر)، وهي فئة نادرة ومستهان بها. ولكنه يثبت للجميع مدى خطئه بامتلاكه لقدرات وجيش من الهياكل العظمية يجلب الكوارث لكل من يقف في طريقه."
@@ -639,7 +639,7 @@
                     </div>
                     <div class="card-info">
                         <div class="card-genres">${genresHTML}</div>
-                        <h3 class="card-title">${manhwa.title}</h3>
+                        <h3 class="card-title" title="${manhwa.title}">${manhwa.title}</h3>
                         <p class="card-desc">${manhwa.desc}</p>
                     </div>
                 `;
@@ -697,7 +697,7 @@
                         </div>
                         <div class="card-info">
                             <div class="card-genres">${genresHTML}</div>
-                            <h3 class="card-title">${manhwa.title}</h3>
+                            <h3 class="card-title" title="${manhwa.title}">${manhwa.title}</h3>
                             <p class="card-desc">${manhwa.desc}</p>
                         </div>
                     `;
