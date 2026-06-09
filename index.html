@@ -260,7 +260,7 @@
         .stat-label { font-size: 1rem; font-weight: 800; color: #ffffff; margin-top: 0.8rem; display: block; text-shadow: 0 2px 5px rgba(0,0,0,0.9); }
 
         /* معرض مانهوا SLAX المذهل */
-        .manhwa-section { padding: 8rem 1rem 12rem; max-width: 1300px; margin: 0 auto; position: relative; z-index: 110; }
+        .manhwa-section { padding: 8rem 1rem 8rem; max-width: 1300px; margin: 0 auto; position: relative; z-index: 110; }
         .section-head { text-align: center; margin-bottom: 4rem; opacity: 1 !important; transform: none !important; }
         .section-tag { font-size: 0.95rem; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase; background: var(--gradient-aurora); -webkit-background-clip: text; color: transparent; display: inline-block; margin-bottom: 1rem; }
         .section-title { font-family: 'Outfit', 'Cairo', sans-serif; font-size: clamp(2.2rem, 5vw, 4rem); font-weight: 800; color: #ffffff; line-height: 1.2; text-shadow: 0 2px 10px rgba(0,0,0,0.9); }
@@ -332,9 +332,26 @@
             font-weight: 700;
         }
 
-        /* شبكة عرض المانهوا الديناميكية */
-        .manhwa-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2.5rem; }
-        .manhwa-card { background: linear-gradient(180deg, rgba(20, 5, 5, 0.92) 0%, rgba(10, 2, 2, 0.7) 100%); border: 2px solid rgba(255,34,34,0.3); border-radius: 20px; overflow: hidden; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); position: relative; box-shadow: 0 15px 35px rgba(0,0,0,0.8); transition: box-shadow 0.4s, border 0.4s, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        /* شبكة عرض المانهوا الديناميكية المصلحة */
+        .manhwa-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+            gap: 2.5rem; 
+        }
+        .manhwa-card { 
+            background: linear-gradient(180deg, rgba(20, 5, 5, 0.92) 0%, rgba(10, 2, 2, 0.7) 100%); 
+            border: 2px solid rgba(255,34,34,0.3); 
+            border-radius: 20px; 
+            overflow: hidden; 
+            backdrop-filter: blur(16px); 
+            -webkit-backdrop-filter: blur(16px); 
+            position: relative; 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.8); 
+            transition: box-shadow 0.4s, border 0.4s, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
         .manhwa-card:hover { box-shadow: 0 30px 60px rgba(0,0,0,0.9), 0 0 40px rgba(255, 34, 34, 0.45); border-color: var(--primary); transform: translateY(-10px); }
         
         .card-img-container { width: 100%; height: 380px; position: relative; overflow: hidden; background-color: #120303; }
@@ -346,12 +363,98 @@
         .card-rating { position: absolute; top: 1.2rem; left: 1.2rem; background: rgba(0,0,0,0.9); border: 2px solid var(--primary); color: #fff; font-family: 'Space Grotesk', sans-serif; font-weight: 800; font-size: 0.95rem; padding: 0.4rem 0.8rem; border-radius: 8px; box-shadow: 0 0 15px var(--primary-glow); display: flex; align-items: center; gap: 4px; }
         .card-rating svg { color: var(--primary); }
 
-        .card-info { padding: 1.5rem; position: relative; z-index: 2; }
-        .card-genres { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.8rem; }
+        /* إصلاح عرض وحجم ومظهر النصوص بدقة فائقة لمنع تداخل الحروف العربية */
+        .card-info { 
+            padding: 1.5rem; 
+            position: relative; 
+            z-index: 2; 
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            flex-grow: 1;
+        }
+        .card-genres { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.8rem; min-height: 25px; }
         .genre-tag { font-size: 0.75rem; background: rgba(255, 34, 34, 0.15); border: 1px solid rgba(255, 34, 34, 0.4); color: #fff; padding: 0.2rem 0.6rem; border-radius: 4px; font-weight: 700; }
         
-        .card-title { font-size: 1.15rem; font-weight: 800; color: #ffffff; margin-bottom: 0.6rem; text-shadow: 0 2px 4px rgba(0,0,0,0.8); line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; height: 42px; }
-        .card-desc { font-size: 0.9rem; color: #cccccc; line-height: 1.6; height: 75px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; text-shadow: 0 1px 2px rgba(0,0,0,0.8); }
+        .card-title { 
+            font-size: 1.15rem; 
+            font-weight: 800; 
+            color: #ffffff; 
+            margin-bottom: 0.8rem; 
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8); 
+            line-height: 1.6; /* مسافة أسطر مناسبة للغة العربية تمنع تداخل النقط */
+            display: -webkit-box; 
+            -webkit-line-clamp: 2; 
+            -webkit-box-orient: vertical; 
+            overflow: hidden; 
+            height: 3.68rem; /* حجز مسافة سطرين بدقة تامة لتوحيد حجم البطاقات: 1.15 * 1.6 * 2 */
+        }
+        .card-desc { 
+            font-size: 0.9rem; 
+            color: #cccccc; 
+            line-height: 1.7; /* راحة تامة للعين أثناء قراءة تفاصيل القصة باللغة العربية */
+            display: -webkit-box; 
+            -webkit-line-clamp: 3; 
+            -webkit-box-orient: vertical; 
+            overflow: hidden; 
+            height: 4.59rem; /* حجز مسافة 3 أسطر بالتساوي: 0.9 * 1.7 * 3 */
+            text-shadow: 0 1px 2px rgba(0,0,0,0.8); 
+        }
+
+        /* نظام تنقل الصفحات الجديد والمذهل */
+        .pagination-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            margin-top: 5rem;
+            position: relative;
+            z-index: 100;
+        }
+        .pag-btn {
+            background: rgba(20, 5, 5, 0.85);
+            border: 2px solid rgba(255, 34, 34, 0.3);
+            color: #fff;
+            padding: 0.8rem 1.8rem;
+            border-radius: 12px;
+            font-family: 'Cairo', sans-serif;
+            font-weight: 800;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            outline: none;
+        }
+        .pag-btn:hover:not(:disabled) {
+            background: var(--primary);
+            color: #000;
+            border-color: var(--primary);
+            box-shadow: 0 0 20px var(--primary-glow);
+            transform: translateY(-3px);
+        }
+        .pag-btn:disabled {
+            opacity: 0.25;
+            cursor: not-allowed;
+            border-color: rgba(255, 255, 255, 0.08);
+            transform: none !important;
+        }
+        .pag-info {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: #ffffff;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.9);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .page-highlight {
+            color: var(--primary);
+            text-shadow: 0 0 12px var(--primary-glow);
+            font-size: 1.4rem;
+            font-family: 'Space Grotesk', 'Cairo', sans-serif;
+        }
 
         /* تذييل الصفحة */
         footer { padding: 4rem 1rem; border-top: 1px solid var(--border-light); display: flex; justify-content: space-between; align-items: center; background: #060101; z-index: 150; position: relative; }
@@ -378,6 +481,8 @@
             footer { flex-direction: column; gap: 1rem; text-align: center; }
             .hero { padding-top: 8rem; }
             .btn-discord-wide { font-size: 1rem; padding: 1.2rem; }
+            .pagination-container { gap: 1rem; }
+            .pag-btn { padding: 0.7rem 1.2rem; font-size: 0.9rem; }
         }
     </style>
 </head>
@@ -477,7 +582,29 @@
             </div>
         </div>
         
+        <!-- شبكة المانهوا -->
         <div class="manhwa-grid" id="manhwaGrid"></div>
+
+        <!-- نظام تنقل الصفحات المحدث -->
+        <div class="pagination-container" id="paginationContainer">
+            <button class="pag-btn" id="prevBtn" onclick="changePage(-1)">
+                <!-- سهم لليمين يمثل "السابق" في اتجاه القراءة العربي -->
+                <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                </svg>
+                <span>السابق</span>
+            </button>
+            <div class="pag-info">
+                صفحة <span id="currentPageNum" class="page-highlight">1</span> من <span id="totalPageNum">5</span>
+            </div>
+            <button class="pag-btn" id="nextBtn" onclick="changePage(1)">
+                <span>التالي</span>
+                <!-- سهم لليسار يمثل "التالي" في اتجاه القراءة العربي -->
+                <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+                </svg>
+            </button>
+        </div>
     </section>
 
     <footer>
@@ -487,10 +614,11 @@
 
     <script>
         /* =============================================================================
-        ⚠️ تم تصحيح الروابط لتكون روابط صور مباشرة لتعمل بنجاح ⚠️
+        ⚠️ تم دمج الـ 50 مانهوا كاملة وإصلاح دقة الروابط بنجاح تفوق الخيال ⚠️
         =============================================================================
         */
         const manhwaData = [
+          // الـ 10 مانهوات الأولى (من نص 45)
           {
             "title": "أقوى نكرومانسر بخصائص تطورية / Strongest Necromancer with Evolutionary Characteristics",
             "rating": "8.8",
@@ -570,8 +698,348 @@
             "genres": ["اكشن", "خيال", "نظام", "مغامرة"],
             "author": "مستمر",
             "desc": "في عالم مدمج بالكامل مع نظام ألعاب الفيديو، يختار البطل فئة 'مستحضر الأرواح' (النكرومانسر)، وهي فئة نادرة ومستهان بها. ولكنه يثبت للجميع مدى خطئه بامتلاكه لقدرات وجيش من الهياكل العظمية يجلب الكوارث لكل من يقف في طريقه."
+          },
+          // الـ 40 مانهوا الإضافية (من نص 46)
+          {
+            "title": "كيلر بيتر / Killer Peter",
+            "rating": "9.4",
+            "image": "https://i.ibb.co/Gfk4yLXt/image.png",
+            "genres": ["اكشن", "انتقام", "قتال", "عصابات"],
+            "author": "مستمر",
+            "desc": "بيتر، أحد أعظم القتلة المأجورين، يتعرض للغدر من المنظمة التي خدمها طوال حياته ومحاولة تصفيته كعجوز. ولكنه بطريقة ما يستعيد جسده الشاب لتبدأ رحلته الدموية للانتقام من الجميع."
+          },
+          {
+            "title": "لوكيسم / Lookism",
+            "rating": "9.5",
+            "image": "https://i.ibb.co/HfsFSSM0/image.png",
+            "genres": ["اكشن", "حياة مدرسية", "دراما", "غموض"],
+            "author": "مستمر",
+            "desc": "بارك هيونغ سوك، طالب سمين وقبيح يتعرض للتنمر الشديد يومياً، يستيقظ فجأة ليجد نفسه يمتلك جسداً آخر خارق الوسامة والقوة. يبدأ بالعيش بحياتين وجسدين مختلفين ليكتشف الجوانب المظلمة للمجتمع."
+          },
+          {
+            "title": "ريالتي كويست / Reality Quest",
+            "rating": "9.2",
+            "image": "https://i.ibb.co/m5MsFxqX/image.png",
+            "genres": ["اكشن", "نظام", "حياة مدرسية", "تنمر"],
+            "author": "مستمر",
+            "desc": "ها دو وان، فتى ضعيف ومجبر على لعب الألعاب لمصلحة المتنمرين، يموت من شدة الإرهاق. ولكنه يبعث مجدداً في الماضي قبل وفاته مباشرة مع نظام واقعي يمنحه مهمات قتالية ليتغلب على المتنمرين."
+          },
+          {
+            "title": "المتنمر المسؤول / The Bully In Charge",
+            "rating": "9.3",
+            "image": "https://i.ibb.co/fdD6p7cC/image.png",
+            "genres": ["اكشن", "حياة مدرسية", "تنمر", "قتال"],
+            "author": "مستمر",
+            "desc": "يبدأ دايغون، الشاب الذي ترك مدرسته والآن يعمل في متجر، رحلة مشوقة بعد أن تم اختياره للانضمام لمشروع تعليمي حكومي يهدف للقضاء على المتنمرين داخل المدارس بالقوة وبث الرعب في قلوبهم."
+          },
+          {
+            "title": "كويستيزم / Questism",
+            "rating": "9.1",
+            "image": "https://i.ibb.co/FLWb0cr1/image.png",
+            "genres": ["اكشن", "نظام", "حياة مدرسية", "كوميديا"],
+            "author": "مستمر",
+            "desc": "كيم سوهيون، طالب عادي يتعرض للاضطهاد ويتمنى لو أن حياته كانت لعبة فيديو. تتحقق أمنيته فجأة عندما تظهر أمامه نافذة مهام في الواقع تمنحه بطاقات وقدرات خارقة مقابل كل مهمة ينهيها."
+          },
+          {
+            "title": "مجموعة الدراسة / Study Group",
+            "rating": "9.2",
+            "image": "https://i.ibb.co/7tjbqxsn/image.png",
+            "genres": ["اكشن", "حياة مدرسية", "فنون قتالية"],
+            "author": "مستمر",
+            "desc": "غامين، فتى يريد فقط أن يدرس بجد ليدخل الجامعة، ولكنه يجد نفسه في أسوأ مدرسة ثانوية للمتنمرين. لكي يتمكن من الدراسة بسلام، يضطر لاستخدام مهاراته الأسطورية في فنون القتال التي تعلمها سراً لحماية مجموعته الدراسية."
+          },
+          {
+            "title": "كيف تقاتل / Viral Hit",
+            "rating": "9.4",
+            "image": "https://i.ibb.co/93nD7ChC/image.png",
+            "genres": ["اكشن", "حياة مدرسية", "كوميديا", "فنون قتالية"],
+            "author": "مكتمل",
+            "desc": "هوبين يو، فتى ضعيف وفقير، يكتشف قناة يوتيوب غامضة تعلم مهارات القتال الفردية. يقرر بدء بث قتالاته الحقيقية ضد المتنمرين ليتحول إلى نجم إنترنت مشهور ويجني المال لعلاج والدته."
+          },
+          {
+            "title": "القلعة / Castle",
+            "rating": "9.6",
+            "image": "https://i.ibb.co/VpB9JtPZ/image.png",
+            "genres": ["اكشن", "عصابات", "غموض", "انتقام"],
+            "author": "مستمر",
+            "desc": "كيم شين، قاتل محترف يعود إلى كوريا سعياً وراء الانتقام للرجل الذي كان بمثابة والده. هدفه هو إسقاط 'كاسل'، المنظمة الإجرامية الأقوى التي تحكم الجانب المظلم من البلاد من وراء الستار."
+          },
+          {
+            "title": "بايك إكس إكس / Baek XX",
+            "rating": "9.1",
+            "image": "https://i.ibb.co/j1BgQd6/image.png",
+            "genres": ["اكشن", "عصابات", "دراما", "غموض"],
+            "author": "مستمر",
+            "desc": "بايك دوغيونغ، عميل سري سابق ميت رسمياً، يضطر لانتحال شخصية شقيقه التوأم بايك ييغيونغ، الذي كان زعيماً لواحدة من أشرس عصابات الشوارع، ليواجه تحديات العالم السفلي المعقد والمميت."
+          },
+          {
+            "title": "القميص الأحمر / Red Shirt",
+            "rating": "8.9",
+            "image": "https://i.ibb.co/zWn91ztX/image.png",
+            "genres": ["اكشن", "عصابات", "فنون قتالية", "دراما"],
+            "author": "مستمر",
+            "desc": "تدور القصة في عالم تسوده صراعات العصابات القاسية والشوارع المليئة بالمخاطر، حيث يبرز بطل القصة بشخصيته القوية وعزيمته لحماية من يحب، مستخدماً قبضته للتغلب على مؤامرات العصابات المتنافسة."
+          },
+          {
+            "title": "الشيطان السماوي لا يمكنه عيش حياة طبيعية / The Heavenly Demon Can't Live a Normal Life",
+            "rating": "9.5",
+            "image": "https://i.ibb.co/39fht0kR/image.png",
+            "genres": ["اكشن", "خيال", "إعادة تجسيد", "دراما"],
+            "author": "مستمر",
+            "desc": "يتجسد بايك جونغ هيوك، الشيطان السماوي الأقوى في عالم الموريم، في جسد 'رومان ديمتري'، الابن الأحمق والكسول لعائلة نبيلة في عالم آخر مليء بالسحر والفرسان. يقرر عيش حياته الجديدة بطريقته الخاصة وإخضاع كل من يقف ضده بقوة لا ترحم."
+          },
+          {
+            "title": "أسطورة النصل الشمالي / Legend of the Northern Blade",
+            "rating": "9.6",
+            "image": "https://i.ibb.co/WWW0y1Pc/image.png",
+            "genres": ["اكشن", "فنون قتالية", "موريم", "انتقام"],
+            "author": "مستمر",
+            "desc": "بعد أن أُجبر والده، زعيم طائفة السماء الشمالية، على الانتحار لإنقاذ ابنه من قادة التحالف الخائنين، يخترب جين مو-وون لسنوات ويتعلم سراً فنون السيف القديمة لطائفته، ليبدأ لاحقاً رحلته الملحمية والدموية للانتقام وتحقيق العدالة."
+          },
+          {
+            "title": "انتقام كلب عائلة السيف ذو الدم الحديدي / Revenge of the Iron-Blooded Sword Hound",
+            "rating": "9.3",
+            "image": "https://i.ibb.co/7NWdgjtp/image.png",
+            "genres": ["اكشن", "خيال", "العودة بالزمن", "انتقام"],
+            "author": "مستمر",
+            "desc": "عاش بيكير ككلب صيد مخلص لعائلة باسيرفيل ذات الدم الحديدي، ليُعدم في النهاية غدراً على يد بطريرك العائلة. ولكن بعد موته، يستيقظ كطفل رضيع مع فرصة ثانية للعودة بالزمن، ليبدأ بذكاء تخطيطه لتمزيق العائلة التي خانته من الداخل."
+          },
+          {
+            "title": "الفارس الذي يعيش لليوم فقط / The Knight Who Lives Only Today",
+            "rating": "9.0",
+            "image": "https://i.ibb.co/rR0jCj7R/image.png",
+            "genres": ["اكشن", "خيال", "مغامرة", "نظام"],
+            "author": "مستمر",
+            "desc": "في عالم مليء بالوحوش والدهاليز، يسعى البطل جاهداً ليصبح فارساً قوياً على الرغم من الصعاب، متبعاً مبدأ العيش لليوم بكل قوة وتحدي المخاطر لحماية ما يهمه ومواجهة الأعداء وجهاً لوجه مستعيناً بقدراته الفريدة."
+          },
+          {
+            "title": "مستحضر الأرواح الوحيد / The Lone Necromancer",
+            "rating": "9.1",
+            "image": "https://i.ibb.co/cXQCDtrT/image.png",
+            "genres": ["اكشن", "خيال", "نظام", "بقاء"],
+            "author": "مستمر",
+            "desc": "ينهار العالم فجأة ويتحول إلى ساحة بقاء مميتة حيث يتعين على الجميع اختيار فئة قتالية. يختار طالب الجامعة 'يو سونغوو' فئة مستحضر الأرواح النادرة، ليبدأ وحيداً في مواجهة وحوش مروعة واستدعاء جيشه الخاص للبقاء على قيد الحياة."
+          },
+          {
+            "title": "مهندس العقارات الأعظم / The Greatest Estate Developer",
+            "rating": "9.7",
+            "image": "https://i.ibb.co/0y0qtcgv/image.png",
+            "genres": ["خيال", "كوميديا", "إعادة تجسيد", "بناء وتطوير"],
+            "author": "مستمر",
+            "desc": "يستيقظ مهندس مدني كوري داخل رواية خيالية في جسد النبيل السكير والكسول 'لويد فرونتيرا' الذي يوشك على الإفلاس. مستغلاً معرفته الهندسية والفيزيائية العميقة، يبدأ في تصميم وبناء مشاريع عقارية مبتكرة لتجنب الديون والعيش حياة مريحة."
+          },
+          {
+            "title": "وجهة نظر القارئ كلي العلم / Omniscient Reader's Viewpoint",
+            "rating": "9.8",
+            "image": "https://i.ibb.co/q3T3b86z/image.png",
+            "genres": ["اكشن", "خيال", "نظام", "بقاء", "غموض"],
+            "author": "مستمر",
+            "desc": "كيم دوكجا هو قارئ عادي كان الوحيد الذي أنهى رواية طويلة فاشلة بعنوان 'ثلاث طرق للبقاء في عالم مدمر'. فجأة، يتحول عالم الرواية الكارثي إلى حقيقة واقعية، ويصبح دوكجا الشخص الوحيد الذي يعرف نهاية هذا العالم وكيفية البقاء فيه."
+          },
+          {
+            "title": "المنعزل الأقوى / The Ultimate Shut-In",
+            "rating": "8.9",
+            "image": "https://i.ibb.co/wN2TnsLY/image.png",
+            "genres": ["اكشن", "خيال", "نظام", "كوميديا"],
+            "author": "مستمر",
+            "desc": "تدور أحداث القصة حول شاب منعزل يفضل البقاء في غرفته طوال الوقت، ولكنه يكتسب نظاماً غامضاً يمنحه قدرات وصلاحيات خارقة تزداد قوة طالما بقي في مساحته الخاصة، مما يضع سيناريوهات وتحديات غير متوقعة ومضحكة."
+          },
+          {
+            "title": "سياف النجوم / The Stellar Swordmaster",
+            "rating": "9.2",
+            "image": "https://i.ibb.co/PvR9qDD2/image.png",
+            "genres": ["اكشن", "خيال", "مغامرة", "سحر"],
+            "author": "مستمر",
+            "desc": "تدور القصة حول فتى ريفي يطمح لإنقاذ عائلته، فيقوده القدر للحصول على قوة النجوم والسيوف المقدسة الأسطورية. ينطلق في رحلة ملحمية لمواجهة قوى الظلام والفساد التي تهدد القارة مستخدماً مهارات سيف سماوية خارقة."
+          },
+          {
+            "title": "دليل بقاء الشخصية الثانوية في الأكاديمية / The Extra's Academy Survival Guide",
+            "rating": "9.3",
+            "image": "https://i.ibb.co/q3Tr2ztY/image.png",
+            "genres": ["خيال", "حياة مدرسية", "أكاديمية", "إعادة تجسيد"],
+            "author": "مستمر",
+            "desc": "يتجسد البطل في لعبة أكاديمية سحرية شهيرة كـ 'إد تيلور'، وهي شخصية ثانوية شريرة ومغرورة يتم طردها فوراً في بداية القصة وتجريدها من كل شيء. يتوجب عليه الآن استخدام مهارات البقاء والذكاء لتوفير الطعام والمأوى ومتابعة الدراسة بسلام."
+          },
+          {
+            "title": "طبيب جراح في عالم الموريم / Doctor's Rebirth",
+            "rating": "9.2",
+            "image": "https://i.ibb.co/RpZMSRLs/image.png",
+            "genres": ["اكشن", "فنون قتالية", "خيال", "إعادة تجسيد"],
+            "author": "مستمر",
+            "desc": "يتعرض جراح عام شاب وموهوب للقتل على يد أفراد عصابة، لكنه يستيقظ في عالم الموريم الأسطوري بجسد طفل صغير. بفضل معرفته الطبية الحديثة، ينقذ حياة طبيب عبقري ليصبح تلميذه ويبدأ رحلته كطبيب جراح أسطوري يدمج الطب الحديث بفنون القتال."
+          },
+          {
+            "title": "العائد لعائلة مدمرة / The Regressor of the Fallen Family",
+            "rating": "9.0",
+            "image": "https://i.ibb.co/VWc7QMwt/image.png",
+            "genres": ["اكشن", "خيال", "العودة بالزمن", "دراما"],
+            "author": "مستمر",
+            "desc": "بعد سقوط عائلته النبيلة وموته بائساً في ساحة المعركة، يحصل البطل على فرصة للعودة بالزمن إلى الماضي قبل الكارثة. هذه المرة، يقرر استخدام معرفته المستقبلية لتجنب تدمير عائلته وبناء قوة مرعبة تسحق كل الأعداء."
+          },
+          {
+            "title": "الشرير المعاكس / Reverse Villain",
+            "rating": "9.1",
+            "image": "https://i.ibb.co/Pz12sZ8v/image.png",
+            "genres": ["اكشن", "خيال", "موريم", "إعادة تجسيد"],
+            "author": "مكتمل",
+            "desc": "جونغ وو محاصر في حلقة مفرغة من إعادة التجسيد مع عدوه اللدود شين ريونغ. بعد خمس محاولات فاشلة للسيطرة على عالم الموريم، يتجسد جونغ وو فجأة في العالم الحديث. يقرر استغلال قوته السابقة ومواهبه ليصبح الأقوى في هذا العصر الجديد."
+          },
+          {
+            "title": "التطور اللانهائي في الموريم / Infinite Leveling: Murim",
+            "rating": "9.5",
+            "image": "https://i.ibb.co/nNqvCGTL/image.png",
+            "genres": ["اكشن", "فنون قتالية", "نظام", "العودة بالزمن"],
+            "author": "مستمر",
+            "desc": "يموت دان يوسونغ ميتة وضيعة في ساحة المعركة دون تحقيق أي إنجاز يُذكر. لكنه يستيقظ مجدداً في الماضي كطفل صغير مع نظام غامض يمنحه مهاماً لرفع مستواه. يبدأ رحلته بالتدريب القاسي اللانهائي ليتجاوز حدوده ويصبح الأقوى."
+          },
+          {
+            "title": "الابن الأصغر لعائلة الماركيز / The Youngest Son of a Marquis House",
+            "rating": "9.1",
+            "image": "https://i.ibb.co/0p8dHPWx/image.png",
+            "genres": ["اكشن", "خيال", "إعادة تجسيد", "انتقام"],
+            "author": "مستمر",
+            "desc": "بعد أن عاش حياة بائسة مليئة بالغدر والقتل، يتجسد البطل مجدداً كالابن الأصغر لعائلة ماركيز قوية جداً. مستعيناً بقدراته السحرية العميقة ومعرفته بالمستقبل، يبدأ في التلاعب بالقوى المحيطة به لإعادة صياغة قدره وسحق أعدائه سراً."
+          },
+          {
+            "title": "أنا ملك الشياطين ولكن هناك الكثير من الأبطال / I'm the Demon King but There Are Too Many Heroes",
+            "rating": "8.9",
+            "image": "https://i.ibb.co/gFgmGRPY/image.png",
+            "genres": ["اكشن", "خيال", "كوميديا", "نظام"],
+            "author": "مستمر",
+            "desc": "يستيقظ البطل فجأة ليجد نفسه قد تجسد في دور ملك الشياطين العظيم. بدلاً من السيطرة المريحة، يكتشف أن العالم يفيض بالأبطال والمغامرين الأقوياء الذين يسعون خلف رأسه. يضطر لاستخدام المكر والنظام للبقاء على قيد الحياة وإدارة مملكته الشيطانية."
+          },
+          {
+            "title": "كيف تعيش كـ لورد مصاص دماء / How to Live as a Vampire Lord",
+            "rating": "9.0",
+            "image": "https://i.ibb.co/0PfxtMf/image.png",
+            "genres": ["اكشن", "خيال", "مصاصي دماء", "غموض"],
+            "author": "مستمر",
+            "desc": "بعد تحوله المفاجئ إلى مصاص دماء من رتبة 'لورد'، يتعين على البطل التأقلم مع حياته الجديدة المليئة بالتعطش للدماء والمؤامرات السياسية بين عشائر مصاصي الدماء وصيادي البشر، محاولاً بناء نفوذه الخاص والسيطرة على غرائزه المظلمة."
+          },
+          {
+            "title": "المرتزق العائد لديه خطة / The Regressed Mercenary Has a Plan",
+            "rating": "9.2",
+            "image": "https://i.ibb.co/sdpqS39w/image.png",
+            "genres": ["اكشن", "خيال", "العودة بالزمن", "استراتيجية"],
+            "author": "مستمر",
+            "desc": "مرتزق مخضرم ذو خبرة قتالية هائلة يموت بعد خوض معارك لا حصر لها، ليعود بالزمن إلى الوراء بجسد شاب. مسلحاً بخطط استراتيجية فائقة، ومعرفة تامة بنقاط ضعف الأعداء وتوزيع الكنوز، يبدأ في تجنيد الحلفاء وبناء فرقة مرتزقة أسطورية تغير موازين القوى."
+          },
+          {
+            "title": "من جندي عادي إلى عاهل / From Foot Soldier to Monarch",
+            "rating": "9.3",
+            "image": "https://i.ibb.co/v4djrfxc/image.png",
+            "genres": ["اكشن", "خيال", "العودة بالزمن", "حرب"],
+            "author": "مستمر",
+            "desc": "كريس، جندي مشاة عادي فقد ذراعه وعاش حياة بائسة في ساحات القتال، يعود بالزمن إلى ما قبل 24 عاماً بذراعه السليمة بفضل قطعة أثرية غامضة. مستعيناً بخبرته الحربية الهائلة وفهمه للتكتيكات العسكرية، يقرر الصعود من القاع ليصبح عاهلاً يحكم الإمبراطورية."
+          },
+          {
+            "title": "تجسيد المصنف السابق لعائلة الموريم / Reincarnation of the Murim Clan's Former Ranker",
+            "rating": "9.2",
+            "image": "https://i.ibb.co/4wcxSs8R/image.png",
+            "genres": ["اكشن", "فنون قتالية", "موريم", "إعادة تجسيد"],
+            "author": "مستمر",
+            "desc": "يتجسد الصياد الأقوى والمصنف الأول في العصر الحديث فجأة داخل عالم الموريم الأسطوري كالابن الأكبر لعائلة قتالية منهارة. مستخدماً مهاراته القتالية الاستثنائية التي طورها في غارات البوابات، يبدأ في إعادة بناء عائلته وسحق الطوائف المنافسة بقوة ساحقة."
+          },
+          {
+            "title": "موهبتك هي ملكي / Your Talent is Mine",
+            "rating": "9.1",
+            "image": "https://i.ibb.co/gF3Mw9C8/image.png",
+            "genres": ["اكشن", "خيال", "نظام", "قدرات خارقة"],
+            "author": "مستمر",
+            "desc": "في عالم يتعرض لغزو الوحوش الأبعاد، يمتلك يي تيان قدرة فريدة تتيح له نسخ مواهب وقدرات الآخرين والوحوش. يبدأ رحلته في الصعود من القاع مستنسخاً أقوى المواهب ليحمي شقيقته ويصبح الأقوى."
+          },
+          {
+            "title": "الملاكم كالي / Gladiator Kali",
+            "rating": "8.9",
+            "image": "https://i.ibb.co/r29Pxw4q/image.png",
+            "genres": ["اكشن", "فنون قتالية", "قتال", "تاريخي"],
+            "author": "مستمر",
+            "desc": "تدور القصة حول كالي، فتى ينشأ في بيئة قاسية ويجبر على القتال كملاكم في حلبات الموت الرومانية المظلمة. مستخدماً قبضته الفولاذية وعزيمته الصلبة، يقرر سحق كل من يقف أمامه للظفر بحريته."
+          },
+          {
+            "title": "النبيل الكسول يصبح عبقرياً / The Lazy Lord Masters the Sword",
+            "rating": "9.3",
+            "image": "https://i.ibb.co/Z6hFsK6G/image.png",
+            "genres": ["اكشن", "خيال", "مغامرة", "تطور الشخصية"],
+            "author": "مستمر",
+            "desc": "أيرين فاريل، فتى يهرب من الواقع بالنوم والكسل لسنوات بعد تعرضه لصدمة طفولة مأساوية. لكن بعد رؤية حلم غامض لرجل يتدرب على السيف لقرون، يستيقظ أيرين ويمسك السيف ليغير حياته وحياة كل من حوله بجهد يفوق الخيال."
+          },
+          {
+            "title": "سيساء فهمي كأنني ممثل عبقري / Suddenly Misunderstood as a Monster Genius Actor",
+            "rating": "9.2",
+            "image": "https://i.ibb.co/tpB9S4LG/image.png",
+            "genres": ["دراما", "خيال", "حياة يومية", "تمثيل"],
+            "author": "مستمر",
+            "desc": "تدور القصة حول شاب عادي يمتلك موهبة دفينة ومرعبة في الاندماج الكامل مع الأدوار التي يؤديها. بمجرد وقوفه أمام الكاميرا، يتحول تماماً لدرجة تجعل المخرجين والجمهور يظنون أنه ممثل عبقري وحش ذو كاريزما طاغية."
+          },
+          {
+            "title": "العودة وتنمية التشي / Regressor's Tale of Cultivation",
+            "rating": "9.4",
+            "image": "https://i.ibb.co/xq0zsB0W/image.png",
+            "genres": ["اكشن", "خيال", "تنمية التشي", "العودة بالزمن"],
+            "author": "مستمر",
+            "desc": "بعد أن أمضى حياته في السعي وراء الخلود وفشل، يعود بطل القصة بالزمن إلى بداية رحلته. مستعيناً بخبرته السابقة ومعرفته العميقة بمسارات الطاقة، يقرر خوض طريق التنمية مجدداً لتجنب أخطاء الماضي والوصول للقمة."
+          },
+          {
+            "title": "الحفيد العبقري لملك القروض / The Genius Grandson of the Loan Shark King",
+            "rating": "9.1",
+            "image": "https://i.ibb.co/8D9rx5nf/image.png",
+            "genres": ["دراما", "غموض", "ذكاء", "إعادة تجسيد"],
+            "author": "مستمر",
+            "desc": "يتجسد البطل كحفيد لملك القروض الأسطوري والغامض الذي يسيطر على الاقتصاد من خلف الستار. مستخدماً دهائه، ومعرفته المستقبلية، يقرر كسب ثقة جده الصارم والسيطرة تدريجياً على هذه الإمبراطورية المالية الضخمة."
+          },
+          {
+            "title": "عودة البطل / Hero Has Returned",
+            "rating": "9.4",
+            "image": "https://i.ibb.co/5gGCtqyX/image.png",
+            "genres": ["اكشن", "خيال", "دراما", "مأساوي"],
+            "author": "مستمر",
+            "desc": "بعد إنقاذه لعالم آخر كبطل أسطوري، يعود كيم مين سو إلى الأرض ليجد أن حياته وعائلته قد تدمرت بالكامل أثناء غيابه. مدفوعاً باليأس والجنون، يقرر استخدام قوته كبطل لتدمير الأرض، مما يجبر أبطالاً آخرين عائدين على الوقوف ضده."
+          },
+          {
+            "title": "إعادة تعيين الدهليز / Dungeon Reset",
+            "rating": "9.3",
+            "image": "https://i.ibb.co/zyP7Pd4/image.png",
+            "genres": ["اكشن", "خيال", "كوميديا", "بقاء", "بناء"],
+            "author": "مستمر",
+            "desc": "داوون، شاب عادي يتم استدعاؤه إلى لعبة دهاليز مميتة. يسقط في فخ قاتل وينجو منه بأعجوبة، لكن بسبب خطأ في النظام، يتم 'إعادة تعيين' الدهليز بينما يبقى هو خارج قواعد اللعبة، ليبدأ العيش وصنع الأدوات والزراعة بطريقة فريدة."
+          },
+          {
+            "title": "أب الزومبي / Zombie Dad",
+            "rating": "9.0",
+            "image": "https://i.ibb.co/Lz1Rnk3Z/image.png",
+            "genres": ["اكشن", "خيال", "دراما", "بقاء"],
+            "author": "مستمر",
+            "desc": "ينهار العالم فجأة بسبب تفشي فيروس الزومبي المرعب. يحاول أب حماية ابنته الوحيدة بكل ما أوتي من قوة، ليتعرض للعض ويتحول إلى زومبي، ولكنه بطريقة ما يحتفظ بوعيه الأبوي وحبه لابنته ليخوض معها غمار البقاء في عالم دمرته الوحوش."
+          },
+          {
+            "title": "المصنف الذي يعيش مرتين / Second Life Ranker",
+            "rating": "9.5",
+            "image": "https://i.ibb.co/Gvs3CJ8W/image.png",
+            "genres": ["اكشن", "خيال", "نظام", "برج", "انتقام"],
+            "author": "مستمر",
+            "desc": "يتلقى يون-وو فجأة خبر وفاة شقيقه التوأم الذي اختفى قبل سنوات، ويعثر على ساعة جيب غامضة تحتوي على مذكراته الصوتية التي تكشف غدر رفاقه به في 'برج إله الشمس'. يقرر يون-وو دخول البرج منتحلاً هوية شقيقه لينتقم من كل من خانه."
           }
         ];
+
+        // --- إعدادات الصفحات والتصفية ---
+        let filteredManhwasList = [...manhwaData]; // يحتوي على القائمة المصفاة بالكامل حالياً
+        let currentPage = 1;
+        const itemsPerPage = 10;
+
+        // مكتبة مذهلة من أغلفة الأنمي عالية الدقة كبدائل تلقائية فائقة الجودة في حالة حدوث خلل في الروابط
+        const coverFallbacks = [
+            "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=600",
+            "https://images.unsplash.com/photo-1578632767115-351597cf2477?q=80&w=600",
+            "https://images.unsplash.com/photo-1560942485-b2a11cc13456?q=80&w=600",
+            "https://images.unsplash.com/photo-1541562232579-512a21360020?q=80&w=600",
+            "https://images.unsplash.com/photo-1580477667995-2b94f01c9516?q=80&w=600",
+            "https://images.unsplash.com/photo-1618336753974-aae8e04506aa?q=80&w=600"
+        ];
+
+        function getFallbackImage(index) {
+            return coverFallbacks[index % coverFallbacks.length];
+        }
 
         // --- نظام إظهار التنبيهات المخصصة ---
         function showToast(message, isSuccess = true) {
@@ -597,25 +1065,42 @@
             }, 3500);
         }
 
-        // --- دالة عرض المانهوا في الشبكة تلقائياً وديناميكياً ---
+        // --- دالة عرض المانهوا وتحديث عناصر الصفحات ديناميكياً ---
         function renderManhwas() {
             const grid = document.getElementById('manhwaGrid');
             grid.innerHTML = '';
             
-            // إضافة رسالة في حال كانت المصفوفة فارغة
-            if (manhwaData.length === 0) {
+            // حساب نطاق العناصر للصفحة الحالية
+            const totalItems = filteredManhwasList.length;
+            const totalPages = Math.ceil(totalItems / itemsPerPage) || 1;
+            
+            // حماية رقم الصفحة من الخروج عن الحدود في حالات الفلترة
+            if (currentPage > totalPages) currentPage = totalPages;
+            if (currentPage < 1) currentPage = 1;
+
+            const startIndex = (currentPage - 1) * itemsPerPage;
+            const endIndex = Math.min(startIndex + itemsPerPage, totalItems);
+            
+            const pageItems = filteredManhwasList.slice(startIndex, endIndex);
+
+            // إضافة رسالة في حال كانت النتائج فارغة
+            if (totalItems === 0) {
                 grid.innerHTML = `
                     <div class="no-results" style="grid-column: 1 / -1; text-align: center; padding: 5rem 1rem;">
                         <svg width="64" height="64" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" style="color: var(--primary); margin-bottom: 1.5rem; opacity: 0.8;">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
                         </svg>
-                        <p style="color: rgba(255, 255, 255, 0.5); font-size: 1.25rem; font-weight: 700;">لا توجد أعمال مضافة حالياً في المعرض!</p>
+                        <p style="color: rgba(255, 255, 255, 0.5); font-size: 1.25rem; font-weight: 700;">لا توجد أعمال مضافة تطابق البحث الحالي!</p>
                     </div>
                 `;
+                document.getElementById('paginationContainer').style.display = 'none';
                 return;
             }
 
-            manhwaData.forEach((manhwa) => {
+            document.getElementById('paginationContainer').style.display = 'flex';
+
+            pageItems.forEach((manhwa, relativeIndex) => {
+                const globalIndex = startIndex + relativeIndex;
                 const card = document.createElement('div');
                 card.className = 'manhwa-card';
                 
@@ -628,7 +1113,7 @@
                 
                 card.innerHTML = `
                     <div class="card-img-container">
-                        <img src="${manhwa.image}" alt="${manhwa.title}" onerror="this.src='https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=600'">
+                        <img src="${manhwa.image}" alt="${manhwa.title}" onerror="this.onerror=null; this.src='${getFallbackImage(globalIndex)}';">
                         <div class="card-overlay"></div>
                         <div class="card-rating">
                             <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
@@ -640,78 +1125,61 @@
                     <div class="card-info">
                         <div class="card-genres">${genresHTML}</div>
                         <h3 class="card-title" title="${manhwa.title}">${manhwa.title}</h3>
-                        <p class="card-desc">${manhwa.desc}</p>
+                        <p class="card-desc" title="${manhwa.desc}">${manhwa.desc}</p>
                     </div>
                 `;
                 grid.appendChild(card);
             });
             
+            // تحديث واجهة أرقام الصفحات
+            document.getElementById('currentPageNum').innerText = currentPage;
+            document.getElementById('totalPageNum').innerText = totalPages;
+            
+            // تفعيل أو تعطيل الأزرار بناءً على الصفحة الحالية
+            document.getElementById('prevBtn').disabled = (currentPage === 1);
+            document.getElementById('nextBtn').disabled = (currentPage === totalPages);
+
             setupCardTilting();
+        }
+
+        // --- التحكم بالتنقل بين الصفحات ---
+        function changePage(direction) {
+            currentPage += direction;
+            renderManhwas();
+            
+            // تمرير سلس وبسيط لأعلى قسم المعرض عند الانتقال لصفحة جديدة لراحة الزائر
+            document.getElementById('catalog').scrollIntoView({ behavior: 'smooth' });
         }
 
         // --- دالة الفلترة والبحث الذكية للمانهوا ---
         function filterManhwas() {
             const query = document.getElementById('searchInput').value.trim().toLowerCase();
-            const grid = document.getElementById('manhwaGrid');
-            grid.innerHTML = '';
             
-            const filtered = manhwaData.filter(manhwa => {
+            filteredManhwasList = manhwaData.filter(manhwa => {
                 const titleMatch = manhwa.title.toLowerCase().includes(query);
                 const descMatch = manhwa.desc.toLowerCase().includes(query);
                 const genresMatch = manhwa.genres.some(g => g.toLowerCase().includes(query));
                 return titleMatch || descMatch || genresMatch;
             });
             
-            if (filtered.length === 0) {
-                grid.innerHTML = `
-                    <div class="no-results">
-                        <svg width="64" height="64" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" style="color: var(--primary); margin-bottom: 1.5rem; opacity: 0.8;">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                        <p>عذراً، لم نجد أي أعمال تطابق بحثك الحالي!</p>
-                    </div>
-                `;
-                showToast('لم نجد أي مانهوا مطابقة لبحثك', false);
-            } else {
-                filtered.forEach((manhwa) => {
-                    const card = document.createElement('div');
-                    card.className = 'manhwa-card';
-                    
-                    let genresHTML = '';
-                    if(manhwa.genres && manhwa.genres.length > 0) {
-                        manhwa.genres.forEach(g => {
-                            genresHTML += `<span class="genre-tag">${g}</span>`;
-                        });
-                    }
-                    
-                    card.innerHTML = `
-                        <div class="card-img-container">
-                            <img src="${manhwa.image}" alt="${manhwa.title}" onerror="this.src='https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=600'">
-                            <div class="card-overlay"></div>
-                            <div class="card-rating">
-                                <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.787 1.4 8.168L12 18.896l-7.334 3.857 1.4-8.168L.132 9.21l8.2-1.192L12 .587z"/>
-                                </svg>
-                                ${manhwa.rating}
-                            </div>
-                        </div>
-                        <div class="card-info">
-                            <div class="card-genres">${genresHTML}</div>
-                            <h3 class="card-title" title="${manhwa.title}">${manhwa.title}</h3>
-                            <p class="card-desc">${manhwa.desc}</p>
-                        </div>
-                    `;
-                    grid.appendChild(card);
-                });
-                
-                setupCardTilting();
-                if (query !== "") {
-                    showToast(`تم العثور على ${filtered.length} عمل مطابق!`);
+            currentPage = 1; // تصفير الصفحة لتبدأ من الأولى عند إتمام أي بحث جديد
+            renderManhwas();
+            
+            if (query !== "") {
+                if (filteredManhwasList.length > 0) {
+                    showToast(`تم العثور على ${filteredManhwasList.length} عمل مطابق لفلتر بحثك!`);
+                } else {
+                    showToast('لم نجد أي مانهوا مطابقة لبحثك', false);
                 }
             }
         }
 
-        // الاستماع لضغط زر Enter في صندوق البحث للبحث الفوري
+        // الاستماع لضغط زر Enter في صندوق البحث للبحث الفوري السريع
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            // بحث لحظي وتلقائي بمجرد تغيير الكلمات لمزيد من السلاسة
+            filterManhwas();
+        });
+
         document.getElementById('searchInput').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
                 filterManhwas();
@@ -722,7 +1190,7 @@
             renderManhwas();
         });
 
-        // --- التحكم بالماوس ومؤشر الحركة الفريد ---
+        // --- التحكم بالماوس ومؤشر الحركة الفريد ثلاثي الأبعاد ---
         const cursor = document.getElementById('cursor'), ring = document.getElementById('cursor-ring');
         let mx = 0, my = 0, rx = 0, ry = 0;
         document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cursor.style.left = mx+'px'; cursor.style.top = my+'px'; });
